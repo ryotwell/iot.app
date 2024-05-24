@@ -6,7 +6,7 @@ import { useAuth } from '@/hooks/auth'
 import Link from 'next/link'
 import { useState } from 'react'
 
-function Home(props) {
+function Home() {
 
     const { user } = useAuth({})
     const [isNavigation, setIsNavigation] = useState(false)
@@ -157,7 +157,7 @@ function Home(props) {
                 </div>
             </div>
         </>
-    );
+    )
 }
 
-export default Home;
+export default Home

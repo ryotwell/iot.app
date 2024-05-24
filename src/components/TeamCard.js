@@ -11,7 +11,7 @@ function TeamCard({ name, photo ='' }) {
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
-export default TeamCard;
+export default TeamCard

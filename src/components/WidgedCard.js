@@ -7,7 +7,7 @@ function WidgedCard({ title, children }) {
                 {children}
             </div>
         </div>
-    );
+    )
 }
 
-export default WidgedCard;
+export default WidgedCard
