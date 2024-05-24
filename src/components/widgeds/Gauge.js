@@ -1,6 +1,6 @@
 import GaugeComponent from 'react-gauge-component'
 
-function GaugeWidged({ value, ...props }) {    
+function GaugeWidged({ value }) {    
     const config = {
         value,
         type: 'radial',
