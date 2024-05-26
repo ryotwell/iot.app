@@ -7,7 +7,6 @@ import Link from 'next/link'
 import { useState } from 'react'
 
 function Home() {
-
     const { user } = useAuth({})
     const [isNavigation, setIsNavigation] = useState(false)
 
@@ -36,16 +35,10 @@ function Home() {
             </div>
 
             <div className={isNavigation ? 'fixed' : 'block'}>
-                <div className="flex justify-between items-center py-4 px-10">
-                    <div className="uppercase font-bold">
-                        <ApplicationLogo className="block h-9 w-auto fill-current dark:text-slate-300 text-gray-800" />
-                    </div>
-                    <div className="block lg:hidden">
-                        <button onClick={handleNavigationToggle} className="hover:bg-gray-200 duration-300 p-2 rounded-lg">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-blue-600/70">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 0 1-1.125-1.125v-3.75ZM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 0 1-1.125-1.125v-8.25ZM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 0 1-1.125-1.125v-2.25Z" />
-                            </svg>
-                        </button>
+                <div className="flex justify-between items-center p-8">
+                    <div className="uppercase font-bold flex justify-center items-center">
+                        <ApplicationLogo className="block h-9 w-auto fill-current dark:text-slate-300 text-gray-800 mr-2" />
+                        Lets Try
                     </div>
                     <ul className="hidden lg:flex space-x-2">
                         <li>
@@ -124,7 +117,7 @@ function Home() {
                                     <li>
                                         <TeamCard
                                             name='Zulzario Zaeri'
-                                            photo="/team/pascol.jpg"
+                                            photo="https://velixs.com/assets/img/team/ilsya.webp"
                                         />
                                     </li>
                                     <li>

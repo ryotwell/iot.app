@@ -49,9 +49,6 @@ const Dashboard = () => {
                             {data.previous_months && (
                                 <StatistikDataMasukWidged {...{ data: data.previous_months, setIncomingDataStatistics }} />
                             )}
-                            <div className='mt-4'>
-                                <h1 className='text-xs text-black/60'>Total : 7382 data</h1>
-                            </div>
                         </div>
                     </WidgedCard>
                 </div>
