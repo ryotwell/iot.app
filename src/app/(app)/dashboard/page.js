@@ -3,22 +3,23 @@
 import Header from '@/app/(app)/Header'
 import WidgedCard from '@/components/WidgedCard'
 import GaugeWidged from '@/components/widgeds/Gauge'
+import StatistikDataMasukWidged from '@/components/widgeds/StatistikDataMasuk'
 import { useAuth } from '@/hooks/auth'
 import axios from '@/lib/axios'
 import { useEffect, useState } from 'react'
 
 const Dashboard = () => {
     const { user } = useAuth({ middleware: 'auth' })
-    const [ room, setRoom ] = useState({})
+    const [ data, setData ] = useState({})
 
-    const getRoom = () => {
+    const getData = () => {
         axios.get('/api/room').then(({ data }) => {
-            setRoom(data)
+            setData(data)
         })
     }
 
     useEffect(() => {
-        getRoom()
+        getData()
     }, [])
 
     return (
@@ -33,7 +34,17 @@ const Dashboard = () => {
 
             <div className="p-8 grid grid-cols-1 lg:grid-cols-4 gap-4">
                 <WidgedCard title='Suhu Ruangan'>
-                    <GaugeWidged value={room?.temperature ?? 0} />
+                    <GaugeWidged value={data?.current?.temperature ?? 0} />
+                </WidgedCard>
+                <WidgedCard title='Statistik Data Masuk'>
+                    <div className='w-full'>
+                        {data.previous_months && (
+                            <StatistikDataMasukWidged data={data.previous_months} />
+                        )}
+                        <div className='mt-4'>
+                            <h1 className='text-xs text-black/60'>Total : 7382 data</h1>
+                        </div>
+                    </div>
                 </WidgedCard>
             </div>
 
