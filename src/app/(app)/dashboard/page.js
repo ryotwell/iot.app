@@ -3,6 +3,7 @@
 import Header from '@/app/(app)/Header'
 import WidgedCard from '@/components/WidgedCard'
 import KelembapanWidged from '@/components/widgeds/Kelembapan'
+import KualitasUdaraWidget from '@/components/widgeds/KualitasUdara'
 import KualitasUdaraTerakhirWidged from '@/components/widgeds/KualitasUdaraTerakhir'
 import StatistikDataMasukWidged from '@/components/widgeds/StatistikDataMasuk'
 import SuhuRuanganWidged from '@/components/widgeds/SuhuRuangan'
@@ -38,6 +39,9 @@ const Dashboard = () => {
 
             <div className="lg:flex p-4 lg:p-8 space-y-4 lg:space-x-4 lg:space-y-0">
                 <div className="lg:w-1/2 grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <WidgedCard title='Kualitas Udara' contentClassName='justify-center items-center h-60'>
+                        <KualitasUdaraWidget data={data.current} />
+                    </WidgedCard>
                     <WidgedCard title='Kelembapan'>
                         <KelembapanWidged value={data?.current?.humidity ?? 0} />
                     </WidgedCard>

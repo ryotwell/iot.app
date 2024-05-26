@@ -1,15 +1,8 @@
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
+import { getAirQualityClassNames } from "@/lib/utils"
 
   function KualitasUdaraTerakhirWidged({ data }) {
-
-    const getClassName = (category) => {
-        if( category === 'god' ) return 'bg-green-500 hover:bg-green-400'
-        if( category === 'normal' ) return 'bg-green-500 hover:bg-green-400'
-        
-        return 'bg-red-500 hover:bg-red-400'
-    }
-
     return (
         <div className="w-full">
             <Table>
@@ -30,9 +23,8 @@ import { Badge } from "@/components/ui/badge"
                                 <TableCell className="font-medium">{x.average_temperature}</TableCell>
                                 <TableCell className="font-medium">{x.average_humidity}</TableCell>
                                 <TableCell>
-                                    <Badge className={`text-white uppercase ${(getClassName(x.category))}`}>{x.category}</Badge>
+                                    <Badge className={`text-white uppercase ${(getAirQualityClassNames(x.category))}`}>{x.category}</Badge>
                                 </TableCell>
-                                {/* <TableCell className={'uppercase font-semibold ' + (getClassName(x.category))}>{x.category}</TableCell> */}
                             </TableRow>
                         )
                     })}
