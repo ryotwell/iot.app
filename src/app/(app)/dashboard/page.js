@@ -2,8 +2,10 @@
 
 import Header from '@/app/(app)/Header'
 import WidgedCard from '@/components/WidgedCard'
-import GaugeWidged from '@/components/widgeds/Gauge'
+import KelembapanWidged from '@/components/widgeds/Kelembapan'
+import KualitasUdaraTerakhirWidged from '@/components/widgeds/KualitasUdaraTerakhir'
 import StatistikDataMasukWidged from '@/components/widgeds/StatistikDataMasuk'
+import SuhuRuanganWidged from '@/components/widgeds/SuhuRuangan'
 import { useAuth } from '@/hooks/auth'
 import axios from '@/lib/axios'
 import { useEffect, useState } from 'react'
@@ -12,15 +14,17 @@ const Dashboard = () => {
     const { user } = useAuth({ middleware: 'auth' })
     const [ data, setData ] = useState({})
 
+    const [incomingDataStatistics, setIncomingDataStatistics] = useState(1);
+
     const getData = () => {
-        axios.get('/api/room').then(({ data }) => {
+        axios.get(`/api/room?incoming_data_statistics=${incomingDataStatistics}`).then(({ data }) => {
             setData(data)
         })
     }
 
     useEffect(() => {
         getData()
-    }, [])
+    }, [incomingDataStatistics])
 
     return (
         <>
@@ -32,20 +36,30 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            <div className="p-8 grid grid-cols-1 lg:grid-cols-4 gap-4">
-                <WidgedCard title='Suhu Ruangan'>
-                    <GaugeWidged value={data?.current?.temperature ?? 0} />
-                </WidgedCard>
-                <WidgedCard title='Statistik Data Masuk'>
-                    <div className='w-full'>
-                        {data.previous_months && (
-                            <StatistikDataMasukWidged data={data.previous_months} />
-                        )}
-                        <div className='mt-4'>
-                            <h1 className='text-xs text-black/60'>Total : 7382 data</h1>
+            <div className="lg:flex p-8 space-y-4 lg:space-x-4 lg:space-y-0">
+                <div className="lg:w-1/2 grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <WidgedCard title='Kelembapan'>
+                        <KelembapanWidged value={data?.current?.humidity ?? 0} />
+                    </WidgedCard>
+                    <WidgedCard title='Suhu Ruangan'>
+                        <SuhuRuanganWidged value={data?.current?.temperature ?? 0} />
+                    </WidgedCard>
+                    <WidgedCard title='Statistik Data Masuk'>
+                        <div className='w-full'>
+                            {data.previous_months && (
+                                <StatistikDataMasukWidged {...{ data: data.previous_months, setIncomingDataStatistics }} />
+                            )}
+                            <div className='mt-4'>
+                                <h1 className='text-xs text-black/60'>Total : 7382 data</h1>
+                            </div>
                         </div>
-                    </div>
-                </WidgedCard>
+                    </WidgedCard>
+                </div>
+                <div className="lg:w-1/2">
+                    <WidgedCard title='Kualitas Udara 7 hari terakhir' lgmax={false}>
+                        <KualitasUdaraTerakhirWidged data={data?.air_quality} />
+                    </WidgedCard>
+                </div>
             </div>
 
             {/* <div className="py-12">

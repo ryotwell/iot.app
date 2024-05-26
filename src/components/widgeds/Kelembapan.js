@@ -1,6 +1,6 @@
 import GaugeComponent from 'react-gauge-component'
 
-function GaugeWidged({ value }) {    
+function KelembapanWidged({ value }) {    
     const config = {
         value,
         type: 'radial',
@@ -35,4 +35,4 @@ function GaugeWidged({ value }) {
     )
 }
 
-export default GaugeWidged
+export default KelembapanWidged
