@@ -73,7 +73,7 @@ function Home() {
                                 <h1 className='text-4xl font-bold tracking-tight dark:text-slate-300 text-gray-900 uppercase mr-2'>
                                     Monitoring Kualitas
                                 </h1>
-                                <span className="mt-2 inline-block -rotate-1 animate-gradient-pulse rounded-xl bg-gradient-to-r from-background via-background to-background px-4 py-1.5 text-lg tracking-tight text-foreground shadow-2xl shadow-primary/[0.25] ring-2 ring-primary/70 dark:via-primary/10 sm:px-4 sm:py-3 sm:text-3xl lg:text-4xl">
+                                <span className="mt-2 inline-block -rotate-1 rounded-xl bg-gradient-to-r from-background via-background to-background px-4 py-1.5 text-lg tracking-tight text-foreground ring-2 sm:px-4 sm:py-3 sm:text-3xl lg:text-4xl shadow-2xl ring-purple-500 text-purple-500">
                                     Udara
                                 </span>
                             </div>
@@ -124,7 +124,7 @@ function Home() {
                                     <li>
                                         <TeamCard
                                             name='Zulzario Zaeri'
-                                            photo="https://velixs.com/assets/img/team/ilsya.webp"
+                                            photo="/team/rand.webp"
                                         />
                                     </li>
                                     <li>

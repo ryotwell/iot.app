@@ -7,7 +7,7 @@ function TeamCard({ name, photo ='' }) {
             />
             <div className="space-y-2">
                 <div className="text-sm font-medium lg:text-sm">
-                    <h3 className="dark:text-slate-200">{name}</h3>
+                    <h3 className="text-purple-700 dark:text-purple-500">{name}</h3>
                 </div>
             </div>
         </div>

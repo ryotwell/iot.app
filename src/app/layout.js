@@ -15,6 +15,9 @@ export const metadata = {
 const RootLayout = ({ children }) => {
     return (
         <html lang="en">
+            <head>
+                <meta name="theme-color" content="#a855f7" />
+            </head>
             <body
                 className={cn(
                     "min-h-screen bg-background font-sans antialiased",
