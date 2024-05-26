@@ -2,6 +2,8 @@ import useSWR from 'swr'
 import axios from '@/lib/axios'
 import { useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
+import { toast } from 'sonner'
+import { getFormattedTimeForError } from '@/lib/utils'
 
 export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
     const router = useRouter()
@@ -47,7 +49,18 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
             .catch(error => {
                 if (error.response.status !== 422) throw error
 
-                setErrors(error.response.data.errors)
+                const message = Object.values(error.response.data.errors)[0]
+
+                toast(message, {
+                    className: 'text-red-500',
+                    description: getFormattedTimeForError(),
+                    action: {
+                        label: 'Close',
+                        onClick: () => console.log('Closed'),
+                    },
+                })
+
+                // setErrors(error.response.data.errors)
             })
     }
 

@@ -92,7 +92,7 @@ function Home() {
                     <div>
                         <h2 className="text-4xl font-bold tracking-tight dark:text-slate-300 text-gray-900">Monitoring Tananam Secara<br />Real Time.</h2>
                         <p className="my-4 text-slate-950/60 dark:text-slate-300/60">
-                            We provide various ready-to-use tools to facilitate your business.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam, necessitatibus.
                         </p>
                         <Link href="/login" className="py-3 px-14 text-slate-100 rounded-full inline-flex bg-gradient-to-r from-pink-600 to-blue-600">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -109,7 +109,7 @@ function Home() {
                     <div className="w-full">
                         <h2 className="text-4xl font-bold tracking-tight dark:text-slate-300 text-gray-900">Anggota<br/>Kelompok.</h2>
                         <p className="my-4 text-slate-950/60 dark:text-slate-300/60">
-                            We provide various ready-to-use tools to facilitate your business.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, blanditiis.
                         </p>
                         <div className="flex justify-center">
                             <div className="w-full lg:w-1/2">

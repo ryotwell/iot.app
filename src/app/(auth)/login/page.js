@@ -1,14 +1,15 @@
 'use client'
 
-import Button from '@/components/Button'
-import Input from '@/components/Input'
 import InputError from '@/components/InputError'
 import Label from '@/components/Label'
-import Link from 'next/link'
 import { useAuth } from '@/hooks/auth'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import AuthSessionStatus from '@/app/(auth)/AuthSessionStatus'
+import { Input } from '@/components/ui/input'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Toaster } from '@/components/ui/sonner'
+import { Button } from '@/components/ui/button'
 
 const Login = () => {
     const router = useRouter()
@@ -47,6 +48,8 @@ const Login = () => {
     return (
         <>
             <AuthSessionStatus className="mb-4" status={status} />
+            <Toaster className='text-red-500' />
+
             <form onSubmit={submitForm}>
                 {/* Email Address */}
                 <div>
@@ -87,32 +90,26 @@ const Login = () => {
 
                 {/* Remember Me */}
                 <div className="block mt-4">
-                    <label
-                        htmlFor="remember_me"
-                        className="inline-flex items-center">
-                        <input
+                    <div className="items-top flex space-x-2">
+                        <Checkbox
                             id="remember_me"
-                            type="checkbox"
                             name="remember"
-                            className="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                             onChange={event =>
                                 setShouldRemember(event.target.checked)
                             }
                         />
-
-                        <span className="ml-2 text-sm text-gray-600">
-                            Remember me
-                        </span>
-                    </label>
+                        <div className="grid gap-1.5 leading-none">
+                            <label
+                                htmlFor="remember_me"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                                Remember me
+                            </label>
+                        </div>
+                    </div>
                 </div>
 
                 <div className="flex items-center justify-end mt-4">
-                    <Link
-                        href="/forgot-password"
-                        className="underline text-sm text-gray-600 hover:text-gray-900">
-                        Forgot your password?
-                    </Link>
-
                     <Button className="ml-3">Login</Button>
                 </div>
             </form>
