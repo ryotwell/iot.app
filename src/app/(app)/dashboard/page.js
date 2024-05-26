@@ -36,7 +36,7 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            <div className="lg:flex p-8 space-y-4 lg:space-x-4 lg:space-y-0">
+            <div className="lg:flex p-4 lg:p-8 space-y-4 lg:space-x-4 lg:space-y-0">
                 <div className="lg:w-1/2 grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <WidgedCard title='Kelembapan'>
                         <KelembapanWidged value={data?.current?.humidity ?? 0} />
