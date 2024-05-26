@@ -9,7 +9,7 @@ export const metadata = {
 const Layout = ({ children }) => {
     return (
         <div>
-            <div className="font-sans text-gray-900 antialiased">
+            <div className="font-sans text-gray-900 dark:text-slate-500 antialiased">
                 <AuthCard
                     logo={
                         <Link href="/">
