@@ -1,6 +1,7 @@
 import '@/app/global.css'
 import { Inter as FontSans } from 'next/font/google'
 import { cn } from "@/lib/utils"
+import { ThemeProvider } from '@/components/theme-provider'
  
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -20,7 +21,15 @@ const RootLayout = ({ children }) => {
                         fontSans.variable
                     )}
             >
-                {children}
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="light"
+                    enableSystem
+                    disableTransitionOnChange
+                >
+                    {children}
+                </ThemeProvider>
+                {/* {children} */}
             </body>
         </html>
     )

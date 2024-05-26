@@ -31,7 +31,7 @@ const Dashboard = () => {
             <Header title="Dashboard" />
 
             <div className="pt-8">
-                <div className="bg-white p-10">
+                <div className="bg-white dark:bg-slate-900 p-10">
                     <p>Selamat datang di area Dashboard <span className='text-blue-500 font-semibold'>{user?.name}</span></p>
                 </div>
             </div>

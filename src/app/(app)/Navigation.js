@@ -9,14 +9,17 @@ import { DropdownButton } from '@/components/DropdownLink'
 import { useAuth } from '@/hooks/auth'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
+import { ThemeToggle } from '@/components/ThemeToggle'
+import { useTheme } from 'next-themes'
 
 const Navigation = ({ user }) => {
     const { logout } = useAuth()
 
     const [open, setOpen] = useState(false)
+    const { theme } = useTheme()
 
     return (
-        <nav className="bg-white border-b border-gray-100">
+        <nav className="bg-white dark:bg-slate-900 border-b border-gray-100 dark:border-slate-950">
             {/* Primary Navigation Menu */}
             <div className="mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
@@ -66,6 +69,9 @@ const Navigation = ({ user }) => {
                                 Logout
                             </DropdownButton>
                         </Dropdown>
+                        <div className='ml-4'>
+                            <ThemeToggle />
+                        </div>
                     </div>
 
                     {/* Hamburger */}
@@ -113,7 +119,7 @@ const Navigation = ({ user }) => {
                     </div>
 
                     {/* Responsive Settings Options */}
-                    <div className="pt-4 pb-1 border-t border-gray-200">
+                    <div className="pt-4 pb-1 border-t border-gray-200 dark:border-slate-950">
                         <div className="flex items-center px-4">
                             <div className="flex-shrink-0">
                                 <svg
@@ -132,11 +138,26 @@ const Navigation = ({ user }) => {
                             </div>
 
                             <div className="ml-3">
-                                <div className="font-medium text-base text-gray-800">
+                                <div className="font-medium text-base text-gray-800 dark:text-slate-500">
                                     {user?.name}
                                 </div>
-                                <div className="font-medium text-sm text-gray-500">
+                                <div className="font-medium text-sm text-gray-500 dark:text-slate-300">
                                     {user?.email}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center px-4 mt-4">
+                            <div className="flex-shrink-0">
+                                <ThemeToggle />
+                            </div>
+
+                            <div className="ml-3">
+                                <div className="font-medium text-base text-gray-800 dark:text-slate-500">
+                                    Theme Toggle
+                                </div>
+                                <div className="font-medium text-sm text-gray-500 dark:text-slate-300">
+                                    Current: <span style={{ textTransform: 'capitalize' }}>{theme}</span>
                                 </div>
                             </div>
                         </div>

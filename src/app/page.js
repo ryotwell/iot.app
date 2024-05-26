@@ -2,6 +2,7 @@
 
 import ApplicationLogo from '@/components/ApplicationLogo'
 import TeamCard from '@/components/TeamCard'
+import { ThemeToggle } from '@/components/ThemeToggle'
 import { useAuth } from '@/hooks/auth'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -40,7 +41,10 @@ function Home() {
                         <ApplicationLogo className="block h-9 w-auto fill-current dark:text-slate-300 text-gray-800 mr-2" />
                         Lets Try
                     </div>
-                    <ul className="hidden lg:flex space-x-2">
+                    <div className='block lg:hidden'>
+                        <ThemeToggle />
+                    </div>
+                    <ul className="hidden lg:flex space-x-2 items-center">
                         <li>
                             <Link className="text-slate-900/60 dark:text-slate-300 hover:bg-blue-500 hover:text-slate-100 duration-300 px-4 py-2 rounded-lg text-sm" href="/">
                                 Home
@@ -56,6 +60,9 @@ function Home() {
                                     Login
                                 </Link>
                             )}
+                        </li>
+                        <li>
+                            <ThemeToggle />
                         </li>
                     </ul>
                 </div>

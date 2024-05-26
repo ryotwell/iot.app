@@ -22,7 +22,7 @@ import { Badge } from "@/components/ui/badge"
                         <TableHead>Status</TableHead>
                     </TableRow>
                 </TableHeader>
-                <TableBody>
+                <TableBody className="text-slate-600">
                     {data?.map((x, key) => {
                         return (
                             <TableRow key={key}>
@@ -30,7 +30,7 @@ import { Badge } from "@/components/ui/badge"
                                 <TableCell className="font-medium">{x.average_temperature}</TableCell>
                                 <TableCell className="font-medium">{x.average_humidity}</TableCell>
                                 <TableCell>
-                                    <Badge className={`uppercase ${(getClassName(x.category))}`}>{x.category}</Badge>
+                                    <Badge className={`text-white uppercase ${(getClassName(x.category))}`}>{x.category}</Badge>
                                 </TableCell>
                                 {/* <TableCell className={'uppercase font-semibold ' + (getClassName(x.category))}>{x.category}</TableCell> */}
                             </TableRow>

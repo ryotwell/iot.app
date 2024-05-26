@@ -29,7 +29,6 @@ module.exports = {
         },
     },
     rules: {
-        "@next/next/no-page-custom-font": "off",
         'import/prefer-default-export': 0,
         'no-console': 'warn',
         'no-nested-ternary': 0,
@@ -43,7 +42,7 @@ module.exports = {
         'react/jsx-no-comment-textnodes': 0,
         'react/jsx-props-no-spreading': 0,
         'react/no-array-index-key': 0,
-        'react/no-unescaped-entities': "off",
+        'react/no-unescaped-entities': 0,
         'react/require-default-props': 0,
         'react/react-in-jsx-scope': 0,
         'linebreak-style': ['error', 'unix'],

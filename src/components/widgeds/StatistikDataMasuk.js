@@ -38,8 +38,8 @@ function StatistikDataMasukWidged({ data, setIncomingDataStatistics }) {
     return (
         <>
             <div className='mb-4'>
-                <Select onValueChange={handleSelect}>
-                    <SelectTrigger className="w-[180px]">
+                <Select onValueChange={handleSelect} className="dark:text-slate-300">
+                    <SelectTrigger className="w-[180px] dark:text-slate-300">
                         <SelectValue placeholder="7 Bulan Yang Lalu" />
                     </SelectTrigger>
                     <SelectContent>
