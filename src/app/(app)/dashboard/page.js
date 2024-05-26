@@ -14,7 +14,7 @@ const Dashboard = () => {
     const { user } = useAuth({ middleware: 'auth' })
     const [ data, setData ] = useState({})
 
-    const [incomingDataStatistics, setIncomingDataStatistics] = useState(1);
+    const [incomingDataStatistics, setIncomingDataStatistics] = useState(1)
 
     const getData = () => {
         axios.get(`/api/room?incoming_data_statistics=${incomingDataStatistics}`).then(({ data }) => {
