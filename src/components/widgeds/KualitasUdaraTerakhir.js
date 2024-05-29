@@ -1,8 +1,22 @@
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Badge } from "@/components/ui/badge"
-import { getAirQualityClassNames } from "@/lib/utils"
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { Badge } from '@/components/ui/badge'
+import { getAirQualityClassNames } from '@/lib/utils'
+import { useEffect, useState } from 'react'
+import axios from '@/lib/axios'
 
-  function KualitasUdaraTerakhirWidged({ data }) {
+  function KualitasUdaraTerakhirWidged() {
+    const [data, setData] = useState([])
+
+    const getData = () => {
+        axios.get('/api/room/air-quality').then(({ data }) => {
+            setData(data)
+        })
+    }
+
+    useEffect(() => {
+        getData()   
+    })
+
     return (
         <div className="w-full">
             <Table>

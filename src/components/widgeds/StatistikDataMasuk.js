@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Bar } from 'react-chartjs-2'
+import axios from '@/lib/axios'
 
 ChartJS.register( CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
@@ -14,12 +15,15 @@ export const options = {
         },
         title: {
             display: false,
-            text: 'Chart.js Bar Chart',
+            text: 'Bar Chart',
         },
     },
 }
 
-function StatistikDataMasukWidged({ data, setIncomingDataStatistics }) {
+function StatistikDataMasukWidged() {
+    const [count, setCount] = useState(1)
+    const [data, setData] = useState({})
+
     const chartdata = {
         labels: data.labels,
         datasets: [
@@ -31,12 +35,22 @@ function StatistikDataMasukWidged({ data, setIncomingDataStatistics }) {
         ],
     }
 
-    const handleSelect = (value) => {
-        setIncomingDataStatistics(value)
+    const getIncomingDataStatistics = () => {
+        axios.get(`/api/room/incoming-data-statistics?count_type=${count}`).then(({ data }) => {
+            setData(data)
+        })
     }
 
+    const handleSelect = (value) => {
+        setCount(value)
+    }
+
+    useEffect(() => {
+        getIncomingDataStatistics()
+    }, [count])
+
     return (
-        <>
+        <div className='w-full'>
             <div className='mb-4'>
                 <Select onValueChange={handleSelect} className="dark:text-slate-300">
                     <SelectTrigger className="w-[180px] dark:text-slate-300">
@@ -49,7 +63,7 @@ function StatistikDataMasukWidged({ data, setIncomingDataStatistics }) {
                 </Select>
             </div>
             <Bar options={options} data={chartdata} />
-        </>
+        </div>
     )
 }
 

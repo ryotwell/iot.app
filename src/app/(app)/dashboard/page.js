@@ -13,19 +13,17 @@ import { useEffect, useState } from 'react'
 
 const Dashboard = () => {
     const { user } = useAuth({ middleware: 'auth' })
-    const [ data, setData ] = useState({})
-
-    const [incomingDataStatistics, setIncomingDataStatistics] = useState(1)
+    const [ lastData, setLastData ] = useState({})
 
     const getData = () => {
-        axios.get(`/api/room?incoming_data_statistics=${incomingDataStatistics}`).then(({ data }) => {
-            setData(data)
+        axios.get(`/api/room/current`).then(({ data }) => {
+            setLastData(data)
         })
     }
 
     useEffect(() => {
         getData()
-    }, [incomingDataStatistics])
+    }, [])
 
     return (
         <>
@@ -40,25 +38,21 @@ const Dashboard = () => {
             <div className="lg:flex p-4 lg:p-8 space-y-4 lg:space-x-4 lg:space-y-0">
                 <div className="lg:w-1/2 grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <WidgedCard title='Kualitas Udara' contentClassName='justify-center items-center h-60'>
-                        <KualitasUdaraWidget data={data.current} />
+                        <KualitasUdaraWidget data={lastData} />
                     </WidgedCard>
                     <WidgedCard title='Kelembapan'>
-                        <KelembapanWidged value={data?.current?.humidity ?? 0} />
+                        <KelembapanWidged value={lastData?.humidity ?? 0} />
                     </WidgedCard>
                     <WidgedCard title='Suhu Ruangan'>
-                        <SuhuRuanganWidged value={data?.current?.temperature ?? 0} />
+                        <SuhuRuanganWidged value={lastData?.temperature ?? 0} />
                     </WidgedCard>
                     <WidgedCard title='Statistik Data Masuk'>
-                        <div className='w-full'>
-                            {data.previous_months && (
-                                <StatistikDataMasukWidged {...{ data: data.previous_months, setIncomingDataStatistics }} />
-                            )}
-                        </div>
+                        <StatistikDataMasukWidged />
                     </WidgedCard>
                 </div>
                 <div className="lg:w-1/2">
                     <WidgedCard title='Kualitas Udara 7 hari terakhir' lgmax={false}>
-                        <KualitasUdaraTerakhirWidged data={data?.air_quality} />
+                        <KualitasUdaraTerakhirWidged />
                     </WidgedCard>
                 </div>
             </div>

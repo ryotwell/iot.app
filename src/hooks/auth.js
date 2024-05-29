@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 import { getFormattedTimeForError } from '@/lib/utils'
+import { Loading } from 'notiflix/build/notiflix-loading-aio'
 
 export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
     const router = useRouter()
@@ -40,12 +41,13 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
     const login = async ({ setErrors, setStatus, ...props }) => {
         await csrf()
 
+        Loading.standard()
         setErrors([])
         setStatus(null)
 
         axios
             .post('/login', props)
-            .then(() => mutate())
+            .then(() => { Loading.remove(); mutate() })
             .catch(error => {
                 if (error.response.status !== 422) throw error
 
@@ -59,6 +61,8 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
                         onClick: () => console.log('Closed'),
                     },
                 })
+
+                Loading.remove()
 
                 // setErrors(error.response.data.errors)
             })
