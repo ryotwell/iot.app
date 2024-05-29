@@ -1,7 +1,6 @@
 'use client'
 
 import Header from '@/app/(app)/Header'
-import WidgedCard from '@/components/WidgedCard'
 import KelembapanWidged from '@/components/widgeds/Kelembapan'
 import KualitasUdaraWidget from '@/components/widgeds/KualitasUdara'
 import KualitasUdaraTerakhirWidged from '@/components/widgeds/KualitasUdaraTerakhir'
@@ -37,23 +36,13 @@ const Dashboard = () => {
 
             <div className="lg:flex p-4 lg:p-8 space-y-4 lg:space-x-4 lg:space-y-0">
                 <div className="lg:w-1/2 grid grid-cols-1 lg:grid-cols-2 gap-4">
-                    <WidgedCard title='Kualitas Udara' contentClassName='justify-center items-center h-60'>
-                        <KualitasUdaraWidget data={lastData} />
-                    </WidgedCard>
-                    <WidgedCard title='Kelembapan'>
-                        <KelembapanWidged value={lastData?.humidity ?? 0} />
-                    </WidgedCard>
-                    <WidgedCard title='Suhu Ruangan'>
-                        <SuhuRuanganWidged value={lastData?.temperature ?? 0} />
-                    </WidgedCard>
-                    <WidgedCard title='Statistik Data Masuk'>
-                        <StatistikDataMasukWidged />
-                    </WidgedCard>
+                    <KualitasUdaraWidget data={lastData} />
+                    <KelembapanWidged value={lastData?.humidity ?? 0} />
+                    <SuhuRuanganWidged value={lastData?.temperature ?? 0} />
+                    <StatistikDataMasukWidged />
                 </div>
                 <div className="lg:w-1/2">
-                    <WidgedCard title='Kualitas Udara 7 hari terakhir' lgmax={false}>
-                        <KualitasUdaraTerakhirWidged />
-                    </WidgedCard>
+                    <KualitasUdaraTerakhirWidged />
                 </div>
             </div>
 

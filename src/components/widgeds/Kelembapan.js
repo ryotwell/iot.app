@@ -1,4 +1,5 @@
 import GaugeComponent from 'react-gauge-component'
+import WidgedCard from '../WidgedCard'
 
 function KelembapanWidged({ value }) {    
     const config = {
@@ -29,9 +30,9 @@ function KelembapanWidged({ value }) {
     }
 
     return (
-        <>
+        <WidgedCard title='Kelembapan'>
             <GaugeComponent {...config} />
-        </>
+        </WidgedCard>
     )
 }
 

@@ -41,13 +41,24 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
     const login = async ({ setErrors, setStatus, ...props }) => {
         await csrf()
 
-        Loading.standard()
+        Loading.standard('Login...')
         setErrors([])
         setStatus(null)
 
         axios
             .post('/login', props)
-            .then(() => { Loading.remove(); mutate() })
+            .then(() => {
+                mutate()
+                Loading.remove()
+                toast('Login successfully, You will be redirect...', {
+                    className: 'text-green-500',
+                    description: getFormattedTimeForError(),
+                    action: {
+                        label: 'Close',
+                        onClick: () => console.log('Closed'),
+                    },
+                })
+            })
             .catch(error => {
                 if (error.response.status !== 422) throw error
 
@@ -109,8 +120,20 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
     }
 
     const logout = async () => {
+        Loading.standard('Logout...')
+
         if (!error) {
-            await axios.post('/logout').then(() => mutate())
+            await axios.post('/logout').then(() => {
+                mutate()
+                toast('Logout successfully, You will be redirect...', {
+                    className: 'text-green-500',
+                    description: getFormattedTimeForError(),
+                    action: {
+                        label: 'Close',
+                        onClick: () => console.log('Closed'),
+                    },
+                })
+            })
         }
 
         window.location.pathname = '/login'
