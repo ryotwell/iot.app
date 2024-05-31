@@ -2,7 +2,6 @@
 
 import ApplicationLogo from '@/components/ApplicationLogo'
 import Team from '@/components/Team'
-import TeamCard from '@/components/TeamCard'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { useAuth } from '@/hooks/auth'
 import Link from 'next/link'
