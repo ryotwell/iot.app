@@ -1,9 +1,8 @@
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
-import { getAirQualityClassNames } from '@/lib/utils'
+import { getAirQualityClassNames, socket } from '@/lib/utils'
 import { useEffect, useState } from 'react'
-import axios from '@/lib/axios'
 import WidgedCard from '../WidgedCard'
 
 function KualitasUdaraTerakhirWidged() {
@@ -11,14 +10,17 @@ function KualitasUdaraTerakhirWidged() {
     const [loading, setLoading] = useState(true)
 
     const getData = () => {
-        axios.get('/api/room/air-quality').then(({ data }) => {
-            setData(data)
-            setLoading(false)
-        })
+        setLoading(true)
+        socket.emit('air_quality')
     }
 
+    socket.on('air_quality', (data) => {
+        setData(data)
+        setLoading(false)
+    })
+
     useEffect(() => {
-        getData()   
+        getData()
     }, [])
 
     return (
