@@ -3,7 +3,6 @@
 import ApplicationLogo from '@/components/ApplicationLogo'
 import TeamCard from '@/components/TeamCard'
 import { ThemeToggle } from '@/components/ThemeToggle'
-import { Button } from '@/components/ui/button'
 import { useAuth } from '@/hooks/auth'
 import Link from 'next/link'
 import { useState } from 'react'
