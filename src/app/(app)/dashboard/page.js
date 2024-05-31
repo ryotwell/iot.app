@@ -1,6 +1,8 @@
 'use client'
 
 import Header from '@/app/(app)/Header'
+import Team from '@/components/Team'
+import WidgedCard from '@/components/WidgedCard'
 import KelembapanWidged from '@/components/widgeds/Kelembapan'
 import KualitasUdaraWidget from '@/components/widgeds/KualitasUdara'
 import KualitasUdaraTerakhirWidged from '@/components/widgeds/KualitasUdaraTerakhir'
@@ -21,15 +23,17 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            <div className="lg:flex p-4 lg:p-8 space-y-4 lg:space-x-4 lg:space-y-0">
+            <div className='lg:flex p-4 space-x-4'>
                 <div className="lg:w-1/2 grid grid-cols-1 lg:grid-cols-2 gap-4">
-                    <KualitasUdaraWidget />
                     <KelembapanWidged />
                     <SuhuRuanganWidged />
                     <StatistikDataMasukWidged />
                 </div>
-                <div className="lg:w-1/2">
+                <div className="lg:w-1/2 grid grid-cols-1 gap-4">
                     <KualitasUdaraTerakhirWidged />
+                    <WidgedCard title='Anggota'>
+                        <Team />
+                    </WidgedCard>
                 </div>
             </div>
 

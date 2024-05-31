@@ -1,6 +1,7 @@
 'use client'
 
 import ApplicationLogo from '@/components/ApplicationLogo'
+import Team from '@/components/Team'
 import TeamCard from '@/components/TeamCard'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { useAuth } from '@/hooks/auth'
@@ -120,33 +121,7 @@ function Home() {
                         </p>
                         <div className="flex justify-center">
                             <div className="w-full lg:w-1/2">
-                                <ul className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                                    <li>
-                                        <TeamCard
-                                            name='Zulzario Zaeri'
-                                            photo="/team/rand.webp"
-                                        />
-                                    </li>
-                                    <li>
-                                        <TeamCard
-                                            name='Taufix Hidayat'
-                                            photo="/team/noprofile.jpg"
-                                        />
-                                    </li>
-                                    <li>
-                                        <TeamCard
-                                            name='Dwi Hartila'
-                                            photo="/team/noprofile.jpg"
-                                        />
-                                    </li>
-                                    <li>
-                                        <TeamCard
-                                            name='ChatGPT'
-                                            photo="/team/chatgpt.jpg"
-
-                                        />
-                                    </li>
-                                </ul>
+                                <Team />
                             </div>
                         </div>
                     </div>

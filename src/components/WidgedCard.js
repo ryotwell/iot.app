@@ -1,26 +1,36 @@
 import { Skeleton } from '@/components/ui/skeleton'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
-function WidgedCard({ title, children, lgmax = true, contentClassName = 'justify-center items-center', loading = false }) {
+function WidgedCard({ title, children, description = false, loading = false }) {
     return (
-        <div>
+        <>
             {loading ? (
-                <>
+                <Card>
                     <Skeleton className='bg-white rounded-lg h-6 mb-4' />
                     <Skeleton className='bg-white rounded-lg h-56' />
-                </>
+                </Card>
             ) : (
-                <>
-                    <div className={`rounded-lg p-4 bg-white dark:bg-slate-900 text-gray-900 bg-gradient-to-br ${lgmax ? 'max-h-80' : ''}`}>
-                        <div className="mb-4">
-                            <h1 className="text-black dark:text-slate-300">{title}</h1>
-                        </div>
-                        <div className={`flex ${contentClassName}`}>
+                <Card>
+                    {(title || description) && (
+                        <CardHeader>
+                            {title && (
+                                <CardTitle>{title}</CardTitle>
+                            )}
+                            {description && (
+                                <CardDescription>
+                                    {description}
+                                </CardDescription>
+                            )}
+                        </CardHeader>
+                    )}
+                    <CardContent>
+                        <div className='flex justify-center items-center'>
                             {children}
                         </div>
-                    </div>
-                </>
+                    </CardContent>
+                </Card>
             )}
-        </div>
+        </>
     )
 }
 
