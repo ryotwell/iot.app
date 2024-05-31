@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Bar } from 'react-chartjs-2'
-import axios from '@/lib/axios'
 import WidgedCard from '../WidgedCard'
 import { Skeleton } from '../ui/skeleton'
-import useSWR from 'swr'
+import { socket } from '@/lib/utils'
 
 ChartJS.register( CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
@@ -26,31 +25,36 @@ export const options = {
 function StatistikDataMasukWidged() {
     const [count, setCount] = useState(1)
     const [loading, setLoading] = useState(true)
-
-    const { data, mutate } = useSWR(`/api/room/incoming-data-statistics?count_type=${count}`, (url) =>
-        axios
-            .get(url)
-            .then(res => {
-                setLoading(false)
-                return res.data
-            }),
-    )
+    const [incomingDataStatistics, setIncomingDataStatistics] = useState({})
 
     const chartdata = {
-        labels: data?.labels,
+        labels: incomingDataStatistics?.labels,
         datasets: [
             {
                 label: 'Jumlah data masuk',
-                data: data?.data,
+                data: incomingDataStatistics?.data,
                 backgroundColor: 'rgba(53, 162, 235, 0.5)',
             },
         ],
     }
 
+    const getIncomingDataStatistics = () => {
+        setLoading(true)
+        socket.emit('incoming_data_statistics', { count_type: count })
+    }
+
     const handleSelect = (value) => {
         setCount(value)
-        mutate()
     }
+
+    socket.on('incoming_data_statistics', (data) => {
+        setIncomingDataStatistics(data)
+        setLoading(false)
+    })
+
+    useEffect(() => {
+        getIncomingDataStatistics()
+    }, [count])
 
     return (
         <WidgedCard title='Statistik Data Masuk'>

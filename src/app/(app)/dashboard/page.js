@@ -1,7 +1,6 @@
 'use client'
 
 import Header from '@/app/(app)/Header'
-import { Button } from '@/components/ui/button'
 import KelembapanWidged from '@/components/widgeds/Kelembapan'
 import KualitasUdaraWidget from '@/components/widgeds/KualitasUdara'
 import KualitasUdaraTerakhirWidged from '@/components/widgeds/KualitasUdaraTerakhir'
@@ -9,7 +8,6 @@ import StatistikDataMasukWidged from '@/components/widgeds/StatistikDataMasuk'
 import SuhuRuanganWidged from '@/components/widgeds/SuhuRuangan'
 import { useAuth } from '@/hooks/auth'
 import axios from '@/lib/axios'
-import { socket } from '@/lib/utils'
 import { useEffect, useState } from 'react'
 
 const Dashboard = () => {
@@ -22,16 +20,6 @@ const Dashboard = () => {
         })
     }
 
-    const handleButton = () => {
-        console.log('clicked')
-
-        socket.emit('incoming_data_statistics')
-    }
-
-    socket.on('incoming_data_statistics', (data) => {
-        console.log(data)
-    })
-
     useEffect(() => {
         getData()
     }, [])
@@ -43,9 +31,6 @@ const Dashboard = () => {
             <div className="pt-8">
                 <div className="bg-white dark:bg-slate-900 p-10">
                     <p className='mb-4'>Selamat datang di area Dashboard <span className='text-blue-500 font-semibold'>{user?.name}</span></p>
-                    <Button onClick={handleButton}>
-                        Click Me
-                    </Button>
                 </div>
             </div>
 
