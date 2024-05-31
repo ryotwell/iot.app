@@ -23,7 +23,11 @@ function KualitasUdaraTerakhirWidged() {
     }, [])
 
     return (
-        <WidgedCard title='Kualitas Udara 7 hari terakhir' lgmax={false} loading={loading}>
+        <WidgedCard
+            title='Kualitas Udara 7 hari terakhir'
+            description='Menyajikan grafik atau data mengenai kualitas udara yang tercatat selama 7 hari terakhir.'
+            loading={loading}
+        >
             <div className="w-full">
                 <Table>
                     <TableCaption>Data 7 Hari Terakhir.</TableCaption>

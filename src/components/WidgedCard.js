@@ -5,10 +5,10 @@ function WidgedCard({ title, children, description = false, loading = false }) {
     return (
         <>
             {loading ? (
-                <Card>
-                    <Skeleton className='bg-white rounded-lg h-6 mb-4' />
+                <>
+                    <Skeleton className='bg-white rounded-lg h-6' />
                     <Skeleton className='bg-white rounded-lg h-56' />
-                </Card>
+                </>
             ) : (
                 <Card>
                     {(title || description) && (

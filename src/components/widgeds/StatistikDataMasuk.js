@@ -57,7 +57,10 @@ function StatistikDataMasukWidged() {
     }, [count])
 
     return (
-        <WidgedCard title='Statistik Data Masuk'>
+        <WidgedCard
+            title='Statistik Data Masuk'
+            description='Statistik dan jumlah data yang telah masuk ke sistem dalam periode waktu tertentu.'
+        >
             <div className='w-full'>
                 <div className='mb-4'>
                     <Select onValueChange={handleSelect} className="dark:text-slate-300">

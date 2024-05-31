@@ -22,7 +22,7 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            <div className='lg:flex p-4 space-x-4'>
+            <div className='lg:flex p-4 space-y-4 lg:space-y-0 lg:space-x-4'>
                 <div className="lg:w-1/2 grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <KelembapanWidged />
                     <SuhuRuanganWidged />
@@ -30,10 +30,17 @@ const Dashboard = () => {
                 </div>
                 <div className="lg:w-1/2 grid grid-cols-1 gap-4">
                     <KualitasUdaraTerakhirWidged />
-                    <WidgedCard title='Anggota'>
+                    <WidgedCard
+                        title='Anggota Kelompok'
+                        description='Daftar atau informasi mengenai anggota kelompok yang terlibat dalam proyek atau monitoring.'
+                    >
                         <Team />
                     </WidgedCard>
                 </div>
+            </div>
+
+            <div className='flex justify-center items-center py-16 text-sm text-slate-950/60 underline'>
+                {`Let's Try`}
             </div>
 
             {/* <div className="py-12">

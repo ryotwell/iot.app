@@ -32,7 +32,11 @@ function SuhuRuanganWidged() {
     }
 
     return (
-        <WidgedCard title='Suhu Ruangan' loading={loading}>
+        <WidgedCard
+            title='Suhu Ruangan'
+            description='Menunjukkan suhu ruangan terkini yang diukur oleh sensor.'
+            loading={loading}
+        >
             <CreateThermometer {...config}/>
         </WidgedCard>
     )

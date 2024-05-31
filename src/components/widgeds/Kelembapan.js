@@ -49,7 +49,11 @@ function KelembapanWidged() {
     }, [])
 
     return (
-        <WidgedCard title='Kelembapan' loading={loading}>
+        <WidgedCard
+            title='Kelembapan'
+            description='Menampilkan tingkat kelembapan saat ini di ruangan yang dipantau.'
+            loading={loading}
+        >
             <GaugeComponent {...config} />
         </WidgedCard>
     )
