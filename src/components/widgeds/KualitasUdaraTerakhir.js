@@ -19,7 +19,7 @@ function KualitasUdaraTerakhirWidged() {
 
     useEffect(() => {
         getData()   
-    })
+    }, [])
 
     return (
         <WidgedCard title='Kualitas Udara 7 hari terakhir' lgmax={false} loading={loading}>

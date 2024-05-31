@@ -1,9 +1,12 @@
 import GaugeComponent from 'react-gauge-component'
 import WidgedCard from '../WidgedCard'
+import { useRoom } from '@/hooks/room'
 
-function KelembapanWidged({ value }) {    
+function KelembapanWidged() {
+    const { data } = useRoom()
+
     const config = {
-        value,
+        value: data?.humidity,
         type: 'radial',
         labels: {
             tickLabels: {
@@ -28,6 +31,7 @@ function KelembapanWidged({ value }) {
             animationDelay: 0
         },
     }
+
 
     return (
         <WidgedCard title='Kelembapan'>

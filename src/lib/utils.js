@@ -1,5 +1,6 @@
 import { clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
+import { io } from 'socket.io-client'
 import moment from 'moment-timezone'
 
 export function cn(...inputs) {
@@ -19,3 +20,7 @@ export const getAirQualityClassNames = (category) => {
     
     return 'bg-red-500 hover:bg-red-400'
 }
+
+export const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL, {
+    transports: ['websocket']
+})

@@ -32,7 +32,6 @@ const RootLayout = ({ children }) => {
                 >
                     {children}
                 </ThemeProvider>
-                {/* {children} */}
             </body>
         </html>
     )

@@ -3,6 +3,7 @@
 import ApplicationLogo from '@/components/ApplicationLogo'
 import TeamCard from '@/components/TeamCard'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { Button } from '@/components/ui/button'
 import { useAuth } from '@/hooks/auth'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -66,18 +67,18 @@ function Home() {
                         </li>
                     </ul>
                 </div>
-                <div className='block lg:flex lg:h-screen p-10'>
+                <div className='block lg:flex lg:h-screen p-10 lg:px-32'>
                     <div className='w-full lg:w-1/2 flex justify-center items-center'>
                         <div>
-                            <div className="lg:inline-flex lg:items-center">
-                                <h1 className='text-4xl font-bold tracking-tight dark:text-slate-300 text-gray-900 uppercase mr-2'>
-                                    Monitoring Kualitas
+                            <div>
+                                <h1 className='text-2xl lg:text-4xl font-bold tracking-tight dark:text-slate-300 text-gray-900 uppercase mr-2'>
+                                    Monitoring Suhu Kelembapan dan Gas untuk Optimasi
                                 </h1>
-                                <span className="mt-2 inline-block -rotate-1 rounded-xl bg-gradient-to-r from-background via-background to-background px-4 py-1.5 text-lg tracking-tight text-foreground ring-2 sm:px-4 sm:py-3 sm:text-3xl lg:text-4xl shadow-2xl ring-purple-500 text-purple-500">
-                                    Udara
-                                </span>
+                                <h1 className="mt-2 inline-block -rotate-1 rounded-xl bg-gradient-to-r from-background via-background to-background px-4 py-1.5 text-lg tracking-tight text-foreground ring-2 sm:px-4 sm:py-3 sm:text-3xl lg:text-4xl shadow-2xl ring-purple-500 text-purple-500">
+                                    Lingkungan
+                                </h1>
                             </div>
-                            <p className="max-w-sm my-4 dark:text-slate-300/60 text-slate-900/60">
+                            <p className="max-w-sm my-6 dark:text-slate-300/60 text-slate-900/60">
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis deserunt autem in pariatur labore praesentium modi aperiam cum dolor libero.
                             </p>
                             <Link href="/login" className="py-3 px-14 text-slate-100 rounded-full inline-flex bg-gradient-to-r from-pink-600 to-blue-600">
@@ -97,7 +98,7 @@ function Home() {
 
                 <div className="text-center px-10 py-16 flex justify-center">
                     <div>
-                        <h2 className="text-4xl font-bold tracking-tight dark:text-slate-300 text-gray-900">Monitoring Kualitas Udara Secara<br />Real Time.</h2>
+                        <h2 className="text-4xl font-bold tracking-tight dark:text-slate-300 text-gray-900">Monitoring Secara<br />Real Time.</h2>
                         <p className="my-4 text-slate-950/60 dark:text-slate-300/60">
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam, necessitatibus.
                         </p>

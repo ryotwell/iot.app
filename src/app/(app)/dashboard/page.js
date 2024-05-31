@@ -1,6 +1,7 @@
 'use client'
 
 import Header from '@/app/(app)/Header'
+import { Button } from '@/components/ui/button'
 import KelembapanWidged from '@/components/widgeds/Kelembapan'
 import KualitasUdaraWidget from '@/components/widgeds/KualitasUdara'
 import KualitasUdaraTerakhirWidged from '@/components/widgeds/KualitasUdaraTerakhir'
@@ -8,6 +9,7 @@ import StatistikDataMasukWidged from '@/components/widgeds/StatistikDataMasuk'
 import SuhuRuanganWidged from '@/components/widgeds/SuhuRuangan'
 import { useAuth } from '@/hooks/auth'
 import axios from '@/lib/axios'
+import { socket } from '@/lib/utils'
 import { useEffect, useState } from 'react'
 
 const Dashboard = () => {
@@ -20,6 +22,16 @@ const Dashboard = () => {
         })
     }
 
+    const handleButton = () => {
+        console.log('clicked')
+
+        socket.emit('incoming_data_statistics')
+    }
+
+    socket.on('incoming_data_statistics', (data) => {
+        console.log(data)
+    })
+
     useEffect(() => {
         getData()
     }, [])
@@ -30,14 +42,17 @@ const Dashboard = () => {
 
             <div className="pt-8">
                 <div className="bg-white dark:bg-slate-900 p-10">
-                    <p>Selamat datang di area Dashboard <span className='text-blue-500 font-semibold'>{user?.name}</span></p>
+                    <p className='mb-4'>Selamat datang di area Dashboard <span className='text-blue-500 font-semibold'>{user?.name}</span></p>
+                    <Button>
+                        Click Me
+                    </Button>
                 </div>
             </div>
 
             <div className="lg:flex p-4 lg:p-8 space-y-4 lg:space-x-4 lg:space-y-0">
                 <div className="lg:w-1/2 grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <KualitasUdaraWidget data={lastData} />
-                    <KelembapanWidged value={lastData?.humidity ?? 0} />
+                    <KelembapanWidged />
                     <SuhuRuanganWidged value={lastData?.temperature ?? 0} />
                     <StatistikDataMasukWidged />
                 </div>

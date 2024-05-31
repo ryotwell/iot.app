@@ -33,6 +33,7 @@
     "react-gauge-component": "^1.2.21",
     "react-liquid-gauge": "^1.2.4",
     "react-thermometer-component": "^1.0.1",
+    "socket.io-client": "^4.7.5",
     "sonner": "^1.4.41",
     "swr": "^1.3.0",
     "tailwind-merge": "^2.3.0",
