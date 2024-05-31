@@ -1,4 +1,4 @@
-function TeamCard({ name, photo ='' }) {
+function TeamCard({ name, photo = null, nim = null }) {
     return (
         <div className="space-y-4">
             <img
@@ -8,6 +8,11 @@ function TeamCard({ name, photo ='' }) {
             <div className="space-y-2">
                 <div className="text-sm font-medium lg:text-sm text-center">
                     <h3 className="text-purple-700 dark:text-purple-500">{name}</h3>
+                    {nim && (
+                        <h3 className="text-xs text-slate-950/50">
+                            {`(${nim})`}
+                        </h3>
+                    )}
                 </div>
             </div>
         </div>
