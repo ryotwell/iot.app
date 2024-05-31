@@ -1,12 +1,27 @@
 import { default as CreateThermometer } from 'react-thermometer-component'
 import { useTheme } from 'next-themes'
 import WidgedCard from '../WidgedCard'
+import { useEffect, useState } from 'react'
+import { socket } from '@/lib/utils'
 
-function SuhuRuanganWidged({ value }) {
+function SuhuRuanganWidged() {
+    const [ current, setCurrent ] = useState({})
     const { theme } = useTheme()
+    
+    const getCurrent = () => {
+        socket.emit('current')
+    }
+
+    socket.on('current', (data) => {
+        setCurrent(data)
+    })
+
+    useEffect(() => {
+        getCurrent()
+    }, [])
 
     const config = {
-        value,
+        value: current?.temperature,
         max: 50,
         steps: 3,
         format: '°C',

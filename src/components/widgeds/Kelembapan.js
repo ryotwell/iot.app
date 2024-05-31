@@ -1,12 +1,17 @@
 import GaugeComponent from 'react-gauge-component'
 import WidgedCard from '../WidgedCard'
-import { useRoom } from '@/hooks/room'
+import { useEffect, useState } from 'react'
+import { socket } from '@/lib/utils'
 
 function KelembapanWidged() {
-    const { data } = useRoom()
+    const [current, setCurrent] = useState({})
+
+    const getCurrent = () => {
+        socket.emit('current')
+    }
 
     const config = {
-        value: data?.humidity,
+        value: current?.humidity,
         type: 'radial',
         labels: {
             tickLabels: {
@@ -32,6 +37,13 @@ function KelembapanWidged() {
         },
     }
 
+    socket.on('current', (data) => {
+        setCurrent(data)
+    })
+
+    useEffect(() => {
+        getCurrent()
+    }, [])
 
     return (
         <WidgedCard title='Kelembapan'>

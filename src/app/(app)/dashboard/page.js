@@ -7,22 +7,9 @@ import KualitasUdaraTerakhirWidged from '@/components/widgeds/KualitasUdaraTerak
 import StatistikDataMasukWidged from '@/components/widgeds/StatistikDataMasuk'
 import SuhuRuanganWidged from '@/components/widgeds/SuhuRuangan'
 import { useAuth } from '@/hooks/auth'
-import axios from '@/lib/axios'
-import { useEffect, useState } from 'react'
 
 const Dashboard = () => {
     const { user } = useAuth({ middleware: 'auth' })
-    const [ lastData, setLastData ] = useState({})
-
-    const getData = () => {
-        axios.get(`/api/room/current`).then(({ data }) => {
-            setLastData(data)
-        })
-    }
-
-    useEffect(() => {
-        getData()
-    }, [])
 
     return (
         <>
@@ -36,9 +23,9 @@ const Dashboard = () => {
 
             <div className="lg:flex p-4 lg:p-8 space-y-4 lg:space-x-4 lg:space-y-0">
                 <div className="lg:w-1/2 grid grid-cols-1 lg:grid-cols-2 gap-4">
-                    <KualitasUdaraWidget data={lastData} />
+                    <KualitasUdaraWidget />
                     <KelembapanWidged />
-                    <SuhuRuanganWidged value={lastData?.temperature ?? 0} />
+                    <SuhuRuanganWidged />
                     <StatistikDataMasukWidged />
                 </div>
                 <div className="lg:w-1/2">

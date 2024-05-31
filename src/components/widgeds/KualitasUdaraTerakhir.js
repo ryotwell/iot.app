@@ -11,10 +11,10 @@ function KualitasUdaraTerakhirWidged() {
 
     const getData = () => {
         setLoading(true)
-        socket.emit('air_quality')
+        socket.emit('the_last_seven_days')
     }
 
-    socket.on('air_quality', (data) => {
+    socket.on('the_last_seven_days', (data) => {
         setData(data)
         setLoading(false)
     })
