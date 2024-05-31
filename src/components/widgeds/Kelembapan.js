@@ -5,8 +5,10 @@ import { socket } from '@/lib/utils'
 
 function KelembapanWidged() {
     const [current, setCurrent] = useState({})
+    const [loading, setLoading] = useState(true)
 
     const getCurrent = () => {
+        setLoading(true)
         socket.emit('current')
     }
 
@@ -15,14 +17,14 @@ function KelembapanWidged() {
         type: 'radial',
         labels: {
             tickLabels: {
-            type: "inner",
-            ticks: [
-                { value: 20 },
-                { value: 40 },
-                { value: 60 },
-                { value: 80 },
-                { value: 100 }
-            ]
+                type: "inner",
+                ticks: [
+                    { value: 20 },
+                    { value: 40 },
+                    { value: 60 },
+                    { value: 80 },
+                    { value: 100 }
+                ]
             }
         },
         arc: {
@@ -39,6 +41,7 @@ function KelembapanWidged() {
 
     socket.on('current', (data) => {
         setCurrent(data)
+        setLoading(false)
     })
 
     useEffect(() => {
@@ -46,7 +49,7 @@ function KelembapanWidged() {
     }, [])
 
     return (
-        <WidgedCard title='Kelembapan'>
+        <WidgedCard title='Kelembapan' loading={loading}>
             <GaugeComponent {...config} />
         </WidgedCard>
     )

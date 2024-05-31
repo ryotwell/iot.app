@@ -6,14 +6,17 @@ import { socket } from '@/lib/utils'
 
 function SuhuRuanganWidged() {
     const [ current, setCurrent ] = useState({})
+    const [ loading, setLoading ] = useState(true)
     const { theme } = useTheme()
     
     const getCurrent = () => {
+        setLoading(true)
         socket.emit('current')
     }
 
     socket.on('current', (data) => {
         setCurrent(data)
+        setLoading(false)
     })
 
     useEffect(() => {
@@ -29,7 +32,7 @@ function SuhuRuanganWidged() {
     }
 
     return (
-        <WidgedCard title='Suhu Ruangan'>
+        <WidgedCard title='Suhu Ruangan' loading={loading}>
             <CreateThermometer {...config}/>
         </WidgedCard>
     )
