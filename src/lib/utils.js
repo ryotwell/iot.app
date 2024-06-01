@@ -4,7 +4,7 @@ import { io } from 'socket.io-client'
 import moment from 'moment-timezone'
 
 export function cn(...inputs) {
-  return twMerge(clsx(inputs))
+    return twMerge(clsx(inputs))
 }
 
 export function getFormattedTimeForError() {
