@@ -24,3 +24,13 @@ export const getAirQualityClassNames = (category) => {
 export const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL, {
     transports: ['websocket']
 })
+
+export const randomBoolean = () => Math.random() >= 0.5
+
+export const randomIntegerInRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
+
+export const randomFloatInRange = (min, max) => Math.random() * (max - min) + min
+
+export const getFirstFourDigits = (integer) => parseFloat(integer.toFixed(2))
+
+export const sleep = (milliseconds) => new Promise(resolve => setTimeout(resolve, milliseconds))
