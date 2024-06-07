@@ -1,3 +1,4 @@
+import { ryotwell } from '@/lib/utils'
 import TeamCard from './TeamCard'
 
 function Team() {
@@ -23,6 +24,7 @@ function Team() {
                     name='Zulzario Zaeri'
                     photo="/team/rand.webp"
                     nim="220602030"
+                    url={ryotwell.webprofile}
                 />
             </li>
             {/* <li>

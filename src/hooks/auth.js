@@ -39,9 +39,10 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
     }
 
     const login = async ({ setErrors, setStatus, ...props }) => {
+        Loading.standard('Login...')
+
         await csrf()
 
-        Loading.standard('Login...')
         setErrors([])
         setStatus(null)
 

@@ -34,3 +34,9 @@ export const randomFloatInRange = (min, max) => Math.random() * (max - min) + mi
 export const getFirstFourDigits = (integer) => parseFloat(integer.toFixed(2))
 
 export const sleep = (milliseconds) => new Promise(resolve => setTimeout(resolve, milliseconds))
+
+export const ryotwell = {
+    name: 'Ryo Otwell',
+    github: 'https://github.com/ryotwell',
+    webprofile: 'https://zulzario.vercel.app/'
+}

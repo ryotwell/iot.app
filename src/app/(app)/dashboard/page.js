@@ -8,6 +8,7 @@ import KualitasUdaraTerakhirWidged from '@/components/widgeds/KualitasUdaraTerak
 import StatistikDataMasukWidged from '@/components/widgeds/StatistikDataMasuk'
 import SuhuRuanganWidged from '@/components/widgeds/SuhuRuangan'
 import { useAuth } from '@/hooks/auth'
+import { ryotwell } from '@/lib/utils'
 
 const Dashboard = () => {
     const { user } = useAuth({ middleware: 'auth' })
@@ -18,7 +19,9 @@ const Dashboard = () => {
 
             <div className="pt-8">
                 <div className="bg-white dark:bg-slate-900 p-10">
-                    <p className='mb-4'>Selamat datang di area Dashboard <span className='text-blue-500 font-semibold'>{user?.name}</span></p>
+                    <p className='mb-4'>
+                        Selamat datang di area Dashboard <a href={ ryotwell.webprofile } className="text-blue-500 font-semibold" target="_blank" rel="noopener noreferrer">{user?.name}</a>
+                    </p>
                 </div>
             </div>
 

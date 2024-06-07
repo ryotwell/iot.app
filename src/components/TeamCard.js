@@ -1,6 +1,7 @@
-function TeamCard({ name, photo = null, nim = null }) {
+
+const Team = ({ name, photo = null, nim = null }) => {
     return (
-        <div className="space-y-4">
+        <>
             <img
                 className="mx-auto h-20 w-20 shadow border dark:border-none rounded-full lg:h-24 lg:w-24"
                 src={ photo ? photo : 'https://i.pinimg.com/236x/56/2e/be/562ebed9cd49b9a09baa35eddfe86b00.jpg'}
@@ -15,6 +16,20 @@ function TeamCard({ name, photo = null, nim = null }) {
                     )}
                 </div>
             </div>
+        </>
+    )
+}
+
+function TeamCard({ url = null, ...props }) {
+    return (
+        <div className="space-y-4">
+            {url ? (
+                <a href={ url } target="_blank" rel="noopener noreferrer">
+                    <Team {...props} />
+                </a>
+            ) : (
+                <Team {...props} />
+            )}
         </div>
     )
 }
