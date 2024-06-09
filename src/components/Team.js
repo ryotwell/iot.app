@@ -22,7 +22,8 @@ function Team() {
             <li>
                 <TeamCard
                     name='Zulzario Zaeri'
-                    photo="/team/rand.webp"
+                    // photo="/team/rand.webp"
+                    photo="/team/noprofile.jpg"
                     nim="220602030"
                     url={ryotwell.webprofile}
                 />
