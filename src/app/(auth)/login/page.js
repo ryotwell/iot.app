@@ -8,7 +8,6 @@ import { useRouter } from 'next/navigation'
 import AuthSessionStatus from '@/app/(auth)/AuthSessionStatus'
 import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
-import { Toaster } from '@/components/ui/sonner'
 import { Button } from '@/components/ui/button'
 
 const Login = () => {
