@@ -1,5 +1,5 @@
 import { formatTime } from "@/lib/utils"
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 function TimeCounter({ createdAt }) {
     const [elapsedTime, setElapsedTime] = useState(0)
