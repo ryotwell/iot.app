@@ -2,6 +2,7 @@ import GaugeComponent from 'react-gauge-component'
 import WidgedCard from '../WidgedCard'
 import { useEffect, useState } from 'react'
 import { socket } from '@/lib/utils'
+import TimeCounter from '../TimeCounter'
 
 function KelembapanWidged() {
     const [current, setCurrent] = useState({})
@@ -54,7 +55,17 @@ function KelembapanWidged() {
             description='Menampilkan tingkat kelembapan saat ini di ruangan yang dipantau.'
             loading={loading}
         >
-            <GaugeComponent {...config} />
+            <div>
+                <GaugeComponent {...config} />
+                <div className="text-center text-slate-950/50 dark:text-slate-100/50">
+                    <div className='text-xs'>
+                        Terakhir di update
+                    </div>
+                    <div className='text-xs'>
+                        <TimeCounter createdAt={current.created_at} />
+                    </div>
+                </div>
+            </div>
         </WidgedCard>
     )
 }

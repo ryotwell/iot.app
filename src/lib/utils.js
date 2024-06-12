@@ -36,6 +36,21 @@ export const getFirstFourDigits = (integer) => parseFloat(integer.toFixed(2))
 
 export const sleep = (milliseconds) => new Promise(resolve => setTimeout(resolve, milliseconds))
 
+export const formatTime = (seconds) => {
+    const hours = Math.floor(seconds / 3600)
+    const remainingSeconds = seconds % 3600
+    const minutes = Math.floor(remainingSeconds / 60)
+    const remainingSecondsOnly = remainingSeconds % 60
+
+    if (hours > 0) {
+        return `${hours} jam, ${minutes} menit, ${remainingSecondsOnly} detik yang lalu`
+    } else if (minutes > 0) {
+        return `${minutes} menit, ${remainingSecondsOnly} detik yang lalu`
+    } else {
+        return `${remainingSecondsOnly} detik yang lalu`
+    }
+}
+
 export const ryotwell = {
     name: 'Ryo Otwell',
     github: 'https://github.com/ryotwell',

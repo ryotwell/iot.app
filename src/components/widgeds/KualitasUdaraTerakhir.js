@@ -34,9 +34,9 @@ function KualitasUdaraTerakhirWidged() {
                     <TableHeader>
                         <TableRow>
                             <TableHead className="w-full">Tanggal</TableHead>
-                            <TableHead>Rata Rata Temperatur</TableHead>
-                            <TableHead>Rata Rata Kelembapan</TableHead>
-                            <TableHead>Status</TableHead>
+                            <TableHead>Rata-Rata Temperatur</TableHead>
+                            <TableHead>Rata-Rata Kelembapan</TableHead>
+                            <TableHead>Kategori</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody className="text-slate-600">
