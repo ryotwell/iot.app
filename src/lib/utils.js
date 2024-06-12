@@ -15,10 +15,11 @@ export function getFormattedTimeForError() {
 }
 
 export const getAirQualityClassNames = (category) => {
-    if( category === 'good' ) return 'bg-green-500 hover:bg-green-400'
-    if( category === 'normal' ) return 'bg-green-500 hover:bg-green-400'
-    
-    return 'bg-red-500 hover:bg-red-400'
+    if( category === 'Baik' ) return 'bg-green-500 hover:bg-green-400'
+    if( category === 'Normal' ) return 'bg-green-500 hover:bg-green-400'
+    if( category === 'Buruk' ) return 'bg-red-500 hover:bg-red-400'
+
+    return ''
 }
 
 export const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL, {

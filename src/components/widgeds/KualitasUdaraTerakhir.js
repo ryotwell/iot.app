@@ -47,7 +47,13 @@ function KualitasUdaraTerakhirWidged() {
                                     <TableCell className="font-medium">{x.average_temperature}</TableCell>
                                     <TableCell className="font-medium">{x.average_humidity}</TableCell>
                                     <TableCell>
-                                        <Badge className={`text-white uppercase ${(getAirQualityClassNames(x.category))}`}>{x.category}</Badge>
+                                        {x.category !== 'Data tidak cukup' ? (
+                                            <Badge className={`text-white uppercase ${(getAirQualityClassNames(x.category))}`}>{x.category}</Badge>
+                                        ) : (
+                                            <pre>
+                                                Data tidak cukup
+                                            </pre>
+                                        )}
                                     </TableCell>
                                 </TableRow>
                             )

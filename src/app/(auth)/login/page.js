@@ -48,7 +48,6 @@ const Login = () => {
     return (
         <>
             <AuthSessionStatus className="mb-4" status={status} />
-            <Toaster className='text-red-500' />
 
             <form onSubmit={submitForm}>
                 {/* Email Address */}
