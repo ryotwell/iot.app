@@ -51,7 +51,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
             .then(() => {
                 mutate()
                 Loading.remove()
-                toast('Login successfully, You will be redirect...', {
+                toast.success('Login successfully, You will be redirect...', {
                     description: getFormattedTimeForError(),
                     action: {
                         label: 'Close',
@@ -64,7 +64,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 
                 const message = Object.values(error.response.data.errors)[0]
 
-                toast(message, {
+                toast.error(message, {
                     description: getFormattedTimeForError(),
                     action: {
                         label: 'Close',
