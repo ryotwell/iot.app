@@ -7,7 +7,6 @@ import axios from '@/lib/axios'
 import { getFirstFourDigits, randomFloatInRange } from '@/lib/utils'
 import { Loading } from 'notiflix'
 import { useState } from 'react'
-import { Toaster } from '@/components/ui/sonner'
 import { toast } from 'sonner'
 import { useAuth } from '@/hooks/auth'
 
@@ -61,7 +60,6 @@ function TestRequest() {
 
     return (
         <div className="p-8 flex justify-center items-center h-screen">
-            <Toaster richColors position="top-left" />
             <Card className="w-full lg:w-1/3">
                 <CardHeader>
                     <CardTitle>

@@ -10,7 +10,7 @@ const fontSans = FontSans({
 })
 
 export const metadata = {
-    title: 'Laravel',
+    title: 'Sistem Monitoring Suhu Kelembapan dan Gas untuk Optimasi',
 }
 
 const RootLayout = ({ children }) => {
@@ -31,7 +31,7 @@ const RootLayout = ({ children }) => {
                     enableSystem
                     disableTransitionOnChange
                 >
-                    <Toaster />
+                    <Toaster richrichColors expand={false} />
                     {children}
                 </ThemeProvider>
             </body>

@@ -1,7 +1,7 @@
 import { Skeleton } from '@/components/ui/skeleton'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
-function WidgedCard({ title, children, description = false, loading = false }) {
+function WidgedCard({ title, children, description = false, loading = false, heightFull = false, ...props }) {
     return (
         <>
             {loading ? (
@@ -10,7 +10,7 @@ function WidgedCard({ title, children, description = false, loading = false }) {
                     <Skeleton className='bg-white rounded-lg h-56' />
                 </>
             ) : (
-                <Card>
+                <Card {...props}>
                     {(title || description) && (
                         <CardHeader>
                             {title && (
@@ -23,10 +23,8 @@ function WidgedCard({ title, children, description = false, loading = false }) {
                             )}
                         </CardHeader>
                     )}
-                    <CardContent>
-                        <div className='flex justify-center items-center'>
-                            {children}
-                        </div>
+                    <CardContent className={ `flex justify-center items-center ${ heightFull && 'lg:h-2/3' }` }>
+                        {children}
                     </CardContent>
                 </Card>
             )}

@@ -22,18 +22,17 @@ function Team() {
             <li>
                 <TeamCard
                     name='Zulzario Zaeri'
-                    // photo="/team/rand.webp"
                     photo="/team/noprofile.jpg"
                     nim="220602030"
                     url={ryotwell.webprofile}
                 />
             </li>
-            {/* <li>
+            <li>
                 <TeamCard
                     name='ChatGPT'
                     photo="/team/chatgpt.jpg"
                 />
-            </li> */}
+            </li>
         </ul>
     )
 }

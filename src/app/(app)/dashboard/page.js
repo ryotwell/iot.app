@@ -1,17 +1,34 @@
 'use client'
 
 import Header from '@/app/(app)/Header'
-import Team from '@/components/Team'
-import WidgedCard from '@/components/WidgedCard'
 import KelembapanWidged from '@/components/widgeds/Kelembapan'
 import KualitasUdaraTerakhirWidged from '@/components/widgeds/KualitasUdaraTerakhir'
+import LastDataWidged from '@/components/widgeds/LastData'
+import SettingsWidged from '@/components/widgeds/Settings'
 import StatistikDataMasukWidged from '@/components/widgeds/StatistikDataMasuk'
 import SuhuRuanganWidged from '@/components/widgeds/SuhuRuangan'
+import TeamWidged from '@/components/widgeds/Team'
 import { useAuth } from '@/hooks/auth'
-import { ryotwell } from '@/lib/utils'
+import { getFormattedTimeForError, ryotwell, socket } from '@/lib/utils'
+import { useEffect } from 'react'
+import { toast } from 'sonner'
 
 const Dashboard = () => {
     const { user } = useAuth({ middleware: 'auth' })
+
+    useEffect(() => {
+        socket.on('send_notif', () => {
+            if( user.setting.dht_11_real_time_notification ) {
+                toast.success('DHT 11 baru saja mengirimkan data baru', {
+                    description: getFormattedTimeForError(),
+                })
+            }
+        })
+
+        return () => {
+            socket.off('send_notif')
+        }
+    }, [])
 
     return (
         <>
@@ -27,18 +44,18 @@ const Dashboard = () => {
 
             <div className='lg:flex p-4 space-y-4 lg:space-y-0 lg:space-x-4'>
                 <div className="lg:w-1/2 grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <LastDataWidged />
                     <KelembapanWidged />
                     <SuhuRuanganWidged />
                     <StatistikDataMasukWidged />
+                    <StatistikDataMasukWidged />
+                    <StatistikDataMasukWidged />
+
                 </div>
                 <div className="lg:w-1/2 grid grid-cols-1 gap-4">
                     <KualitasUdaraTerakhirWidged />
-                    <WidgedCard
-                        title='Anggota Kelompok'
-                        description='Daftar atau informasi mengenai anggota kelompok yang terlibat dalam proyek atau monitoring.'
-                    >
-                        <Team />
-                    </WidgedCard>
+                    <SettingsWidged />
+                    <TeamWidged />
                 </div>
             </div>
 
