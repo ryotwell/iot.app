@@ -7,12 +7,12 @@ import {
     Title,
     Tooltip,
     Legend,
-  } from 'chart.js'
+} from 'chart.js'
 
 import { Line } from 'react-chartjs-2'
-import WidgedCard from '../WidgedCard';
-import { useEffect, useState } from 'react';
-import { socket } from '@/lib/utils';
+import WidgedCard from '../WidgedCard'
+import { useEffect, useState } from 'react'
+import { socket } from '@/lib/utils'
 
 ChartJS.register(
     CategoryScale,
@@ -27,13 +27,13 @@ ChartJS.register(
 export const options = {
     responsive: true,
     plugins: {
-      legend: {
-        position: 'bottom',
-      },
-      title: {
-        display: true,
-        text: 'Statistik Data',
-      },
+        legend: {
+            position: 'bottom',
+        },
+        title: {
+            display: true,
+            text: 'Statistik Data',
+        },
     },
 }
   
@@ -131,7 +131,7 @@ function StatisticsOfTheLastSevenDaysWidgeds() {
                 <Line options={options} data={ReactChartPPMData} />
             </WidgedCard>
         </>
-    );
+    )
 }
 
-export default StatisticsOfTheLastSevenDaysWidgeds;
+export default StatisticsOfTheLastSevenDaysWidgeds

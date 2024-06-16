@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Tank from '../Tank'
 import WidgedCard from '../WidgedCard'
-import { calculatePPM, getAirQualityByPPM, socket } from '@/lib/utils'
+import { calculatePPM, getAirQualityByPPM } from '@/lib/utils'
 
 import {
     Dialog,

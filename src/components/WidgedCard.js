@@ -1,7 +1,7 @@
 import { Skeleton } from '@/components/ui/skeleton'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
-function WidgedCard({ title, children, className = '', description = false, loading = false, heightFull = false }) {
+function WidgedCard({ title, children, className = '', description = false, loading = false }) {
     return (
         <>
             {loading ? (
