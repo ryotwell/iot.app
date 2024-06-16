@@ -24,14 +24,15 @@ function Tank({ value, max = 100 }) {
                     const valueStyle = {
                         fontSize: textPixels
                     }
-                    const percentStyle = {
-                        fontSize: textPixels * 0.6
-                    }
 
                     return (
                         <tspan>
                             <tspan className="value" style={valueStyle}>{value}</tspan>
-                            {/* <tspan style={percentStyle}>{props.percent}</tspan> */}
+                            {/* <tspan style={{
+                                fontSize: textPixels * 0.6
+                            }}>
+                                {props.percent}
+                            </tspan> */}
                         </tspan>
                     )
                 }}
