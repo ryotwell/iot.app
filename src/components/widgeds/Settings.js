@@ -54,10 +54,10 @@ function SettingsWidged() {
                     <div className="flex p-4 lg:p-8 rounded-md border border-1">
                         <div className="w-full">
                             <div className="font-semibold mb-2">
-                                DHT-11 real-time
+                                Data Baru
                             </div>
                             <div className="text-sm text-slate-950/50">
-                                { 'Notifikasi secara real-time setiap DHT-11 hit "api endpoint room"' } 
+                                { 'Notifikasi secara real-time setiap ada data baru yang masuk' } 
                             </div>
                         </div>
                         <div className="flex items-center justify-center px-4">
@@ -71,6 +71,28 @@ function SettingsWidged() {
                         </div>
                     </div>
                 </div>
+                {/* <div className="mb-4">
+                    <h3 className="font-semibold text-lg mb-4">Whatsapp Notifications</h3>
+                    <div className="flex p-4 lg:p-8 rounded-md border border-1">
+                        <div className="w-full">
+                            <div className="font-semibold mb-2">
+                                Kualitas udara buruk
+                            </div>
+                            <div className="text-sm text-slate-950/50">
+                                { 'Notifikasi di kirim ke whatsapp secara real-time jika udara tidak sehat/buruk' } 
+                            </div>
+                        </div>
+                        <div className="flex items-center justify-center px-4">
+                            <Switch
+                                id="dht_11_real_time_notification"
+                                checked={setting.dht_11_real_time_notification}
+                                value={setting.dht_11_real_time_notification ? 'on' : 'off'}
+                                disabled={submit}
+                                onClick={handler}
+                            />
+                        </div>
+                    </div>
+                </div> */}
 
                 <Button
                     onClick={handleOnSave}

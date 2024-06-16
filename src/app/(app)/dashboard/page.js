@@ -1,20 +1,31 @@
 'use client'
 
+import { toast } from 'sonner'
+import { useAuth } from '@/hooks/auth'
+import { useEffect, useState } from 'react'
+import { getFormattedTimeForError, ryotwell, socket } from '@/lib/utils'
+
 import Header from '@/app/(app)/Header'
-import KelembapanWidged from '@/components/widgeds/Kelembapan'
-import KualitasUdaraTerakhirWidged from '@/components/widgeds/KualitasUdaraTerakhir'
+import GasWidged from '@/components/widgeds/Gas'
+import TeamWidged from '@/components/widgeds/Team'
 import LastDataWidged from '@/components/widgeds/LastData'
 import SettingsWidged from '@/components/widgeds/Settings'
-import StatistikDataMasukWidged from '@/components/widgeds/StatistikDataMasuk'
+import KelembapanWidged from '@/components/widgeds/Kelembapan'
 import SuhuRuanganWidged from '@/components/widgeds/SuhuRuangan'
-import TeamWidged from '@/components/widgeds/Team'
-import { useAuth } from '@/hooks/auth'
-import { getFormattedTimeForError, ryotwell, socket } from '@/lib/utils'
-import { useEffect } from 'react'
-import { toast } from 'sonner'
+import StatistikDataMasukWidged from '@/components/widgeds/StatistikDataMasuk'
+import KualitasUdaraTerakhirWidged from '@/components/widgeds/KualitasUdaraTerakhir'
+import StatisticsOfTheLastSevenDaysWidgeds from '@/components/widgeds/StatisticsOfTheLastSevenDaysWidgeds'
 
 const Dashboard = () => {
     const { user } = useAuth({ middleware: 'auth' })
+
+    const [current, setCurrent] = useState({})
+    const [currentLoading, setCurrentLoading] = useState(true)
+
+    const getCurrent = () => {
+        setCurrentLoading(true)
+        socket.emit('current')
+    }
 
     useEffect(() => {
         socket.on('send_notif', () => {
@@ -25,9 +36,17 @@ const Dashboard = () => {
             }
         })
 
-        return () => {
-            socket.off('send_notif')
-        }
+        socket.on('current', (data) => {
+            setCurrent(data)
+            setCurrentLoading(false)
+        })
+
+        getCurrent()
+
+        return () => [
+            socket.off('send_notif'),
+            socket.off('current'),
+        ]
     }, [])
 
     return (
@@ -44,11 +63,11 @@ const Dashboard = () => {
 
             <div className='lg:flex p-4 space-y-4 lg:space-y-0 lg:space-x-4'>
                 <div className="lg:w-1/2 grid grid-cols-1 lg:grid-cols-2 gap-4">
-                    <LastDataWidged />
-                    <KelembapanWidged />
-                    <SuhuRuanganWidged />
-                    <StatistikDataMasukWidged />
-                    <StatistikDataMasukWidged />
+                    <GasWidged {...{ current, loading: currentLoading }} />
+                    <KelembapanWidged {...{ current, loading: currentLoading }} />
+                    <SuhuRuanganWidged {...{ current, loading: currentLoading }} />
+                    <LastDataWidged {...{ current, loading: currentLoading }} />
+                    <StatisticsOfTheLastSevenDaysWidgeds />
                     <StatistikDataMasukWidged />
 
                 </div>

@@ -1,26 +1,7 @@
-import { useEffect, useState } from "react"
 import WidgedCard from "../WidgedCard"
-import { socket } from "@/lib/utils"
 import TimeCounter from "../TimeCounter"
 
-function LastDataWidged() {
-    const [current, setCurrent] = useState({})
-    const [loading, setLoading] = useState(true)
-
-    const getCurrent = () => {
-        setLoading(true)
-        socket.emit('current')
-    }
-
-    socket.on('current', (data) => {
-        setCurrent(data)
-        setLoading(false)
-    })
-
-    useEffect(() => {
-        getCurrent()
-    }, [])
-
+function LastDataWidged({ current, loading }) {
     return (
         <WidgedCard
             title="Data Terakhir Masuk"

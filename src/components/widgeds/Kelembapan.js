@@ -1,17 +1,7 @@
 import GaugeComponent from 'react-gauge-component'
 import WidgedCard from '../WidgedCard'
-import { useEffect, useState } from 'react'
-import { socket } from '@/lib/utils'
 
-function KelembapanWidged() {
-    const [current, setCurrent] = useState({})
-    const [loading, setLoading] = useState(true)
-
-    const getCurrent = () => {
-        setLoading(true)
-        socket.emit('current')
-    }
-
+function KelembapanWidged({ current, loading }) {
     const config = {
         value: current?.humidity,
         type: 'radial',
@@ -38,15 +28,6 @@ function KelembapanWidged() {
             animationDelay: 0
         },
     }
-
-    socket.on('current', (data) => {
-        setCurrent(data)
-        setLoading(false)
-    })
-
-    useEffect(() => {
-        getCurrent()
-    }, [])
 
     return (
         <WidgedCard

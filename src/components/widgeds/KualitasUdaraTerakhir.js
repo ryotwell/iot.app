@@ -1,6 +1,6 @@
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Badge } from '@/components/ui/badge'
-import { getAirQualityClassNames, socket } from '@/lib/utils'
+import { calculatePPM, getAirQualityClassNames, socket } from '@/lib/utils'
 import { useEffect, useState } from 'react'
 import WidgedCard from '../WidgedCard'
 
@@ -10,22 +10,28 @@ function KualitasUdaraTerakhirWidged() {
 
     const getData = () => {
         setLoading(true)
-        socket.emit('the_last_seven_days')
+        socket.emit('data_for_the_last_7_days')
     }
-
-    socket.on('the_last_seven_days', (data) => {
-        setData(data)
-        setLoading(false)
-    })
-
+    
     useEffect(() => {
         getData()
+    }, [])
+    
+    useEffect(() => {
+        socket.on('data_for_the_last_7_days', (data) => {
+            setData(data)
+            setLoading(false)
+        })
+        
+        return () => {
+            socket.off('data_for_the_last_7_days')
+        }
     }, [])
 
     return (
         <WidgedCard
-            title='Kualitas Udara 7 hari terakhir'
-            description='Menyajikan grafik atau data mengenai kualitas udara yang tercatat selama 7 hari terakhir.'
+            title='Data 7 hari terakhir'
+            description='Menyajikan rata-rata data yang tercatat selama 7 hari terakhir.'
             loading={loading}
         >
             <div className="w-full">
@@ -34,8 +40,10 @@ function KualitasUdaraTerakhirWidged() {
                     <TableHeader>
                         <TableRow>
                             <TableHead className="w-full">Tanggal</TableHead>
-                            <TableHead>Rata-Rata Temperatur</TableHead>
-                            <TableHead>Rata-Rata Kelembapan</TableHead>
+                            <TableHead>Gas</TableHead>
+                            <TableHead>PPM</TableHead>
+                            <TableHead>Suhu</TableHead>
+                            <TableHead>Kelembapan</TableHead>
                             <TableHead>Kategori</TableHead>
                         </TableRow>
                     </TableHeader>
@@ -44,6 +52,8 @@ function KualitasUdaraTerakhirWidged() {
                             return (
                                 <TableRow key={key}>
                                     <TableCell className="font-medium">{x.name}</TableCell>
+                                    <TableCell className="font-medium">{x.average_sensor_reading_mq135}</TableCell>
+                                    <TableCell className="font-medium">{calculatePPM(x.average_sensor_reading_mq135)}</TableCell>
                                     <TableCell className="font-medium">{x.average_temperature}</TableCell>
                                     <TableCell className="font-medium">{x.average_humidity}</TableCell>
                                     <TableCell>

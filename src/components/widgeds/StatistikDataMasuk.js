@@ -46,15 +46,21 @@ function StatistikDataMasukWidged() {
     const handleSelect = (value) => {
         setCount(value)
     }
-
-    socket.on('incoming_data_statistics', (data) => {
-        setIncomingDataStatistics(data)
-        setLoading(false)
-    })
-
+    
     useEffect(() => {
         getIncomingDataStatistics()
     }, [count])
+
+    useEffect(() => {
+        socket.on('incoming_data_statistics', (data) => {
+            setIncomingDataStatistics(data)
+            setLoading(false)
+        })
+
+        return () => {
+            socket.off('incoming_data_statistics')
+        }
+    }, [])
 
     return (
         <WidgedCard

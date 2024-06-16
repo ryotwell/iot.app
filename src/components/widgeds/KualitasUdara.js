@@ -11,13 +11,19 @@ function KualitasUdaraWidget() {
         socket.emit('current')
     }
 
-    socket.on('current', (data) => {
-        setCurrent(data)
-        setLoading(false)
-    })
-
     useEffect(() => {
         getCurrent()
+    }, [])
+
+    useEffect(() => {
+        socket.on('current', (data) => {
+            setCurrent(data)
+            setLoading(false)
+        })
+
+        return () => {
+            socket.off('current')
+        }
     }, [])
 
     return (
