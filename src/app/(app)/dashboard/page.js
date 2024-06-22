@@ -52,6 +52,10 @@ const Dashboard = () => {
         ]
     }, [])
 
+    useEffect(() => {
+        console.log('Mounted!')
+    }, [])
+
     return (
         <>
             <Header title="Dashboard" />
