@@ -23,6 +23,8 @@ const Dashboard = () => {
     const [currentLoading, setCurrentLoading] = useState(true)
 
     const getCurrent = () => {
+        console.log('getCurrent ...')
+        
         setCurrentLoading(true)
         socket.emit('current')
     }
@@ -37,6 +39,8 @@ const Dashboard = () => {
         })
 
         socket.on('current', (data) => {
+            console.log('current data:', data)
+
             setCurrent(data)
             setCurrentLoading(false)
         })
