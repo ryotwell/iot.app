@@ -48,12 +48,13 @@ const Dashboard = () => {
         return () => [
             socket.off('send_notif'),
             socket.off('current'),
-            getCurrent(),
         ]
     }, [])
 
     useEffect(() => {
         console.log('Mounted!')
+
+        getCurrent()
     }, [])
 
     return (
