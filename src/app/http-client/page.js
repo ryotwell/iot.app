@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import axios from '@/lib/axios'
-import { getFirstFourDigits, randomFloatInRange } from '@/lib/utils'
+import { getFirstFourDigits, randomFloatInRange, randomIntegerInRange } from '@/lib/utils'
 import { Loading } from 'notiflix'
 import { useState } from 'react'
 import { toast } from 'sonner'
@@ -15,15 +15,20 @@ export const httpClient = {
     method: 'POST',
 }
 
-function TestRequest() {
-    const [ data, setData ] = useState({ temperature: getFirstFourDigits(randomFloatInRange(10, 40)), humidity: getFirstFourDigits(randomFloatInRange(20, 90)) })
+function HttpClient() {
+    const [ data, setData ] = useState({
+        humidity: getFirstFourDigits(randomFloatInRange(20, 90)),
+        temperature: getFirstFourDigits(randomFloatInRange(10, 40)),
+        sensor_reading_mq135: randomIntegerInRange(20, 300),
+    })
 
     const { csrf } = useAuth({ middleware: '' })
 
     const handleGenerate = () => {
         setData({
+            humidity: getFirstFourDigits(randomFloatInRange(20, 90)),
             temperature: getFirstFourDigits(randomFloatInRange(10, 40)),
-            humidity: getFirstFourDigits(randomFloatInRange(20, 90))
+            sensor_reading_mq135: randomIntegerInRange(20, 300),
         })
     }
 
@@ -34,8 +39,9 @@ function TestRequest() {
 
         try {
             await axios.post('/api/room', {
-                temperature: data.temperature,
                 humidity: data.humidity,
+                temperature: data.temperature,
+                sensor_reading_mq135: data.sensor_reading_mq135
             })
     
             toast('Data berhasil dikirim ke server!', {
@@ -84,6 +90,10 @@ function TestRequest() {
                         <label htmlFor="">{ 'Humidity (0 - 100)' }</label>
                         <Input onChange={(e) => setData({ ...data, humidity: e.target.value })} value={data.humidity} className="mt-2" />
                     </div>
+                    <div className="mb-4">
+                        <label htmlFor="">{ 'Sensor MQ-135' }</label>
+                        <Input onChange={(e) => setData({ ...data, sensor_reading_mq135: e.target.value })} value={data.sensor_reading_mq135} className="mt-2" />
+                    </div>
                     <div className="flex justify-end space-x-4">
                         <Button onClick={handleGenerate}>
                             Generate
@@ -98,4 +108,4 @@ function TestRequest() {
     )
 }
 
-export default TestRequest
+export default HttpClient

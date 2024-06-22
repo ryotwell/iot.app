@@ -57,21 +57,21 @@ export const ryotwell = {
     webprofile: 'https://zulzario.vercel.app/'
 }
 
-export const getAirQualityByPPM = (ppm) => {
-    if (ppm < 100) {
-        return "Baik"
-    } else if (ppm >= 100 && ppm < 300) {
-        return "Normal"
-    }
+// export const getAirQualityByPPM = (ppm) => {
+//     if (ppm < 100) {
+//         return "Baik"
+//     } else if (ppm >= 100 && ppm < 300) {
+//         return "Normal"
+//     }
 
-    return "Buruk"
-}
+//     return "Buruk"
+// }
 
-export const calculatePPM = (sensorValue, R0 = 30) => {
-    const VRL = (sensorValue / 1023.0) * 5.0    // Calculate sensor voltage
-    const RS_air = 10.0 * ((5.0 / VRL) - 1.0)   // Calculate sensor resistance in clean air
-    const ratio = RS_air / R0                   // Calculate the current ratio
-    const ppm = 613.9 * Math.pow(ratio, -2.074) // Calculate PPM
+// export const calculatePPM = (sensorValue, R0 = 30) => {
+//     const VRL = (sensorValue / 1023.0) * 5.0    // Calculate sensor voltage
+//     const RS_air = 10.0 * ((5.0 / VRL) - 1.0)   // Calculate sensor resistance in clean air
+//     const ratio = RS_air / R0                   // Calculate the current ratio
+//     const ppm = 613.9 * Math.pow(ratio, -2.074) // Calculate PPM
 
-    return getFirstFourDigits(ppm)
-}
+//     return getFirstFourDigits(ppm)
+// }

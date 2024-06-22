@@ -41,11 +41,10 @@ const Dashboard = () => {
             setCurrentLoading(false)
         })
 
-        getCurrent()
-
         return () => [
             socket.off('send_notif'),
             socket.off('current'),
+            getCurrent(),
         ]
     }, [])
 
@@ -66,9 +65,9 @@ const Dashboard = () => {
                     <GasWidged {...{ current, loading: currentLoading }} />
                     <KelembapanWidged {...{ current, loading: currentLoading }} />
                     <SuhuRuanganWidged {...{ current, loading: currentLoading }} />
-                    <LastDataWidged {...{ current, loading: currentLoading }} />
-                    <StatisticsOfTheLastSevenDaysWidgeds />
                     <StatistikDataMasukWidged />
+                    <StatisticsOfTheLastSevenDaysWidgeds />
+                    <LastDataWidged {...{ current, loading: currentLoading }} />
 
                 </div>
                 <div className="lg:w-1/2 grid grid-cols-1 gap-4">

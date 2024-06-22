@@ -1,4 +1,12 @@
 import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+  } from '@/components/ui/select'
+
+import {
     Chart as ChartJS,
     CategoryScale,
     LinearScale,
@@ -13,6 +21,7 @@ import { Line } from 'react-chartjs-2'
 import WidgedCard from '../WidgedCard'
 import { useEffect, useState } from 'react'
 import { socket } from '@/lib/utils'
+import SkeletonLoading from '../SkeletonLoading'
 
 ChartJS.register(
     CategoryScale,
@@ -39,9 +48,40 @@ export const options = {
   
 function StatisticsOfTheLastSevenDaysWidgeds() {
     const [data, setData] = useState({ labels: [], data: { average_humidity: [], average_temperature: [], average_sensor_reading_mq135: [], average_ppm: [] } })
+    const [count, setCount] = useState('days-7')
+    const [loading, setLoading] = useState(true)
+    // const [selectOptions, setSelectOptions] = useState([
+    //     {
+    //         id: "",
+    //         name: "Suhu 12 jam terakhir",
+    //     }
+    // ])
+
+    const getWidgetTitle = (label) => {
+        if ( count === 'hours-12' ) {
+            return `${label} 12 jam terakhir`
+        }
+
+        if ( count === 'hours-24' ) {
+            return `${label} 24 jam terakhir`
+        }
+
+        if ( count === 'days-7' ) {
+            return `${label} 7 hari terakhir`
+        }
+
+        if ( count === 'days-12' ) {
+            return `${label} 12 hari terakhir`
+        }
+    }
+    
+    const handleSelect = (value) => {
+        setCount(value)
+    }
 
     const getData = () => {
-        socket.emit('statistics_of_the_last_7_days')
+        setLoading(true)
+        socket.emit('statistics_of_the_last_7_days', { count })
     }
 
     const ReactChartTemperatureData = {
@@ -93,44 +133,84 @@ function StatisticsOfTheLastSevenDaysWidgeds() {
     }
 
     useEffect(() => {
+        getData()
+    }, [count])
+
+    useEffect(() => {
         socket.on('statistics_of_the_last_7_days', (data) => {
             setData(data)
+            setLoading(false)
         })
 
-        getData()
-
-        return () => {
-            socket.off('statistics_of_the_last_7_days')
-        }
+        return () => [
+            socket.off('statistics_of_the_last_7_days'),
+        ]
     }, [])
 
     return (
         <>
             <WidgedCard
-                title="Suhu 7 hari terakhir"
+                title={getWidgetTitle('Suhu')}
                 description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, velit."
             >
-                <Line options={options} data={ReactChartTemperatureData} />
+                <Wrapper {...{ count, loading, handleSelect }}>
+                    <Line options={options} data={ReactChartTemperatureData} />
+                </Wrapper>
             </WidgedCard>
             <WidgedCard
-                title="Kelembapan 7 hari terakhir"
+                title={getWidgetTitle('Kelembapan')}
                 description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, velit."
             >
-                <Line options={options} data={ReactChartHumidityData} />
+                <Wrapper {...{ count, loading, handleSelect }}>
+                    <Line options={options} data={ReactChartHumidityData} />
+                </Wrapper>
             </WidgedCard>
             <WidgedCard
-                title="Gas 7 hari terakhir"
+                title={getWidgetTitle('Gas')}
                 description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, velit."
             >
-                <Line options={options} data={ReactChartReadingMQ135Data} />
+                <Wrapper {...{ count, loading, handleSelect }}>
+                    <Line options={options} data={ReactChartReadingMQ135Data} />
+                </Wrapper>
             </WidgedCard>
             <WidgedCard
-                title="PPM 7 hari terakhir"
+                title={getWidgetTitle('PPM')}
                 description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, velit."
             >
-                <Line options={options} data={ReactChartPPMData} />
+                <Wrapper {...{ count, loading, handleSelect }}>
+                    <Line options={options} data={ReactChartPPMData} />
+                </Wrapper>
             </WidgedCard>
         </>
+    )
+}
+
+const Wrapper = ({ children, count, loading, handleSelect }) => {
+    return (
+        <div className='w-full'>
+            <div className='flex justify-start mb-4'>
+                <SelectComponent count={count} handleSelect={handleSelect} />
+            </div>
+            {loading ? (
+                <SkeletonLoading />
+            ) : children}
+        </div>
+    )
+}
+
+const SelectComponent = ({ count, handleSelect }) => {
+    return (
+        <Select value={count} onValueChange={handleSelect}>
+            <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="--- [ PILIH ] ---" />
+            </SelectTrigger>
+            <SelectContent>
+                <SelectItem value="hours-12">12 Jam Terakhir</SelectItem>
+                <SelectItem value="hours-24">24 Jam Terakhir</SelectItem>
+                <SelectItem value="days-7">7 Hari Terakhir</SelectItem>
+                <SelectItem value="days-12">12 Hari Terakhir</SelectItem>
+            </SelectContent>
+        </Select>
     )
 }
 

@@ -71,11 +71,11 @@ function StatistikDataMasukWidged() {
                 <div className='mb-4'>
                     <Select onValueChange={handleSelect} className="dark:text-slate-300">
                         <SelectTrigger className="w-[180px] dark:text-slate-300">
-                            <SelectValue placeholder="7 Bulan Yang Lalu" />
+                            <SelectValue placeholder="7 Bulan Terakhir" />
                         </SelectTrigger>
                         <SelectContent>
-                            <SelectItem value="1">7 Bulan Yang Lalu</SelectItem>
-                            <SelectItem value="2">12 Bulan Yang Lalu</SelectItem>
+                            <SelectItem value="1">7 Bulan Terakhir</SelectItem>
+                            <SelectItem value="2">12 Bulan Terakhir</SelectItem>
                         </SelectContent>
                     </Select>
                 </div>

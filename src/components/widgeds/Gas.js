@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Tank from '../Tank'
 import WidgedCard from '../WidgedCard'
-import { calculatePPM, getAirQualityByPPM } from '@/lib/utils'
 
 import {
     Dialog,
@@ -16,7 +15,7 @@ function GasWidged({ current, loading }) {
     const [warning, setWarning] = useState(false)
 
     useEffect(() => {
-        if( getAirQualityByPPM(calculatePPM(current.sensor_reading_mq135)) === 'Buruk' ) {
+        if( current.category === 'Buruk' ) {
             setWarning(true)
         } else {
             setWarning(false)
@@ -46,7 +45,7 @@ function GasWidged({ current, loading }) {
                     value={current.sensor_reading_mq135}
                 />
                 <div className='flex justify-center mt-4'>
-                    PPM : {calculatePPM(current.sensor_reading_mq135)} {getAirQualityByPPM(calculatePPM(current.sensor_reading_mq135))}
+                    PPM : {current.ppm} {current.category}
                 </div>
             </div>
         </WidgedCard>
