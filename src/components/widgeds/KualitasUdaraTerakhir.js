@@ -21,8 +21,11 @@ function KualitasUdaraTerakhirWidged() {
 
         return () => [
             socket.off('data_for_the_last_7_days'),
-            getData()
         ]
+    }, [])
+
+    useEffect(() => {
+        getData()
     }, [])
 
     return (
