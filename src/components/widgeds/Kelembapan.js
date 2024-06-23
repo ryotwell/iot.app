@@ -1,9 +1,9 @@
 import GaugeComponent from 'react-gauge-component'
 import WidgedCard from '../WidgedCard'
 
-function KelembapanWidged({ current, loading }) {
+function KelembapanWidged({ current }) {
     const config = {
-        value: current?.humidity,
+        value: current?.humidity ?? 0,
         type: 'radial',
         labels: {
             tickLabels: {
@@ -33,7 +33,6 @@ function KelembapanWidged({ current, loading }) {
         <WidgedCard
             title='Kelembapan'
             description='Menampilkan tingkat kelembapan saat ini di ruangan yang dipantau.'
-            loading={loading}
         >
             <GaugeComponent {...config} />
         </WidgedCard>

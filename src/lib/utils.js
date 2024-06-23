@@ -54,7 +54,7 @@ export const formatTime = (seconds) => {
 export const ryotwell = {
     name: 'Ryo Otwell',
     github: 'https://github.com/ryotwell',
-    webprofile: 'https://zulzario.vercel.app/'
+    webprofile: 'https://ryotwell.vercel.app/'
 }
 
 // export const getAirQualityByPPM = (ppm) => {

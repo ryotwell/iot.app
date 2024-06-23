@@ -2,11 +2,11 @@ import { default as CreateThermometer } from 'react-thermometer-component'
 import { useTheme } from 'next-themes'
 import WidgedCard from '../WidgedCard'
 
-function SuhuRuanganWidged({ current, loading }) {
+function SuhuRuanganWidged({ current }) {
     const { theme } = useTheme()
 
     const config = {
-        value: current?.temperature,
+        value: current?.temperature ?? 0,
         max: 50,
         steps: 3,
         format: '°C',
@@ -17,7 +17,6 @@ function SuhuRuanganWidged({ current, loading }) {
         <WidgedCard
             title='Suhu Ruangan'
             description='Menunjukkan suhu ruangan terkini yang diukur oleh sensor.'
-            loading={loading}
         >
             <CreateThermometer {...config}/>
         </WidgedCard>

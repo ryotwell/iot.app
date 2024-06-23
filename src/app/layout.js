@@ -3,6 +3,9 @@ import { Inter as FontSans } from 'next/font/google'
 import { cn } from "@/lib/utils"
 import { ThemeProvider } from '@/components/theme-provider.js'
 import { Toaster } from '@/components/ui/sonner'
+import { register } from 'swiper/element/bundle'
+
+register()
  
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -18,6 +21,8 @@ const RootLayout = ({ children }) => {
         <html lang="en">
             <head>
                 <meta name="theme-color" content="#a855f7" />
+                
+                <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
             </head>
             <body
                 className={cn(
@@ -27,9 +32,8 @@ const RootLayout = ({ children }) => {
             >
                 <ThemeProvider
                     attribute="class"
-                    defaultTheme="light"
-                    enableSystem
-                    disableTransitionOnChange
+                    defaultTheme="dark"
+                    enableSystem={false}
                 >
                     <Toaster richrichColors expand={false} />
                     {children}

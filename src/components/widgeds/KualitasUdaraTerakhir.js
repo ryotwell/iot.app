@@ -3,6 +3,7 @@ import { Badge } from '@/components/ui/badge'
 import { getAirQualityClassNames, socket } from '@/lib/utils'
 import { useEffect, useState } from 'react'
 import WidgedCard from '../WidgedCard'
+import { Button } from '../ui/button'
 
 function KualitasUdaraTerakhirWidged() {
     const [data, setData] = useState([])
@@ -36,6 +37,11 @@ function KualitasUdaraTerakhirWidged() {
             right
         >
             <div className="w-full">
+                <div className='mb-6'>
+                    <Button>
+                        Export data 7 hari terakhir
+                    </Button>
+                </div>
                 <Table>
                     <TableCaption>Data 7 Hari Terakhir.</TableCaption>
                     <TableHeader>

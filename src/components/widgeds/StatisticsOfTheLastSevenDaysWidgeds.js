@@ -21,7 +21,6 @@ import { Line } from 'react-chartjs-2'
 import WidgedCard from '../WidgedCard'
 import { useEffect, useState } from 'react'
 import { socket } from '@/lib/utils'
-import SkeletonLoading from '../SkeletonLoading'
 
 ChartJS.register(
     CategoryScale,
@@ -41,7 +40,7 @@ export const options = {
         },
         title: {
             display: true,
-            text: 'Statistik Data',
+            text: 'Statistik Visualisasi Data',
         },
     },
 }
@@ -50,12 +49,6 @@ function StatisticsOfTheLastSevenDaysWidgeds() {
     const [data, setData] = useState({ labels: [], data: { average_humidity: [], average_temperature: [], average_sensor_reading_mq135: [], average_ppm: [] } })
     const [count, setCount] = useState('days-7')
     const [loading, setLoading] = useState(true)
-    // const [selectOptions, setSelectOptions] = useState([
-    //     {
-    //         id: "",
-    //         name: "Suhu 12 jam terakhir",
-    //     }
-    // ])
 
     const getWidgetTitle = (label) => {
         if ( count === 'hours-12' ) {
@@ -81,7 +74,7 @@ function StatisticsOfTheLastSevenDaysWidgeds() {
 
     const getData = () => {
         setLoading(true)
-        socket.emit('statistics_of_the_last_7_days', { count })
+        socket.emit('statistics_of_the_last', { count })
     }
 
     const ReactChartTemperatureData = {
@@ -137,50 +130,51 @@ function StatisticsOfTheLastSevenDaysWidgeds() {
     }, [count])
 
     useEffect(() => {
-        socket.on('statistics_of_the_last_7_days', (data) => {
+        socket.on('statistics_of_the_last', (data) => {
             setData(data)
             setLoading(false)
         })
 
         return () => [
-            socket.off('statistics_of_the_last_7_days'),
+            socket.off('statistics_of_the_last'),
         ]
     }, [])
 
     return (
         <>
-            <WidgedCard
-                title={getWidgetTitle('Suhu')}
-                description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, velit."
-            >
-                <Wrapper {...{ count, loading, handleSelect }}>
-                    <Line options={options} data={ReactChartTemperatureData} />
-                </Wrapper>
-            </WidgedCard>
-            <WidgedCard
-                title={getWidgetTitle('Kelembapan')}
-                description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, velit."
-            >
-                <Wrapper {...{ count, loading, handleSelect }}>
-                    <Line options={options} data={ReactChartHumidityData} />
-                </Wrapper>
-            </WidgedCard>
-            <WidgedCard
-                title={getWidgetTitle('Gas')}
-                description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, velit."
-            >
-                <Wrapper {...{ count, loading, handleSelect }}>
-                    <Line options={options} data={ReactChartReadingMQ135Data} />
-                </Wrapper>
-            </WidgedCard>
-            <WidgedCard
-                title={getWidgetTitle('PPM')}
-                description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, velit."
-            >
-                <Wrapper {...{ count, loading, handleSelect }}>
-                    <Line options={options} data={ReactChartPPMData} />
-                </Wrapper>
-            </WidgedCard>
+            <swiper-container>
+                <swiper-slide>
+                    <WidgedCard title={getWidgetTitle('Suhu')} description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, velit.">
+                        <Wrapper {...{ count, loading, handleSelect }}>
+                            <Line options={options} data={ReactChartTemperatureData} />
+                        </Wrapper>
+                    </WidgedCard>
+                </swiper-slide>
+                <swiper-slide>
+                    <WidgedCard title={getWidgetTitle('Gas')} description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, velit.">
+                        <Wrapper {...{ count, loading, handleSelect }}>
+                            <Line options={options} data={ReactChartReadingMQ135Data} />
+                        </Wrapper>
+                    </WidgedCard>
+                </swiper-slide>
+            </swiper-container>
+
+            <swiper-container>
+                <swiper-slide>
+                    <WidgedCard title={getWidgetTitle('Kelembapan')} description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, velit.">
+                        <Wrapper {...{ count, loading, handleSelect }}>
+                            <Line options={options} data={ReactChartHumidityData} />
+                        </Wrapper>
+                    </WidgedCard>
+                </swiper-slide>
+                <swiper-slide>
+                    <WidgedCard title={getWidgetTitle('PPM')} description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, velit.">
+                        <Wrapper {...{ count, loading, handleSelect }}>
+                            <Line options={options} data={ReactChartPPMData} />
+                        </Wrapper>
+                    </WidgedCard>
+                </swiper-slide>
+            </swiper-container>
         </>
     )
 }
@@ -189,18 +183,16 @@ const Wrapper = ({ children, count, loading, handleSelect }) => {
     return (
         <div className='w-full'>
             <div className='flex justify-start mb-4'>
-                <SelectComponent count={count} handleSelect={handleSelect} />
+                <SelectComponent count={count} handleSelect={handleSelect} loading={loading} />
             </div>
-            {loading ? (
-                <SkeletonLoading />
-            ) : children}
+            {children}
         </div>
     )
 }
 
-const SelectComponent = ({ count, handleSelect }) => {
+const SelectComponent = ({ count, loading, handleSelect }) => {
     return (
-        <Select value={count} onValueChange={handleSelect}>
+        <Select value={count} onValueChange={handleSelect} disabled={loading}>
             <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="--- [ PILIH ] ---" />
             </SelectTrigger>

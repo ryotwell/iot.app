@@ -1,53 +1,16 @@
-import React, { useEffect, useState } from 'react'
 import Tank from '../Tank'
 import WidgedCard from '../WidgedCard'
 
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-  } from "@/components/ui/dialog"
-  
-
-function GasWidged({ current, loading }) {
-    const [warning, setWarning] = useState(false)
-
-    useEffect(() => {
-        if( current.category === 'Buruk' ) {
-            setWarning(true)
-        } else {
-            setWarning(false)
-        }
-    }, [current])
-
+function GasWidged({ current }) {
     return (
         <WidgedCard
             title="Gas"
             description="Lorem ipsum dolor, sit amet consectetur adipisicing elit."
-            loading={loading}
         >
-            <div>
-                <Dialog open={warning}>
-                    <DialogContent>
-                        <DialogHeader>
-                        <DialogTitle className="text-red-500">Peringatan Udara Buruk!</DialogTitle>
-                        <DialogDescription className="text-red-500/70">
-                            { `"Peringatan Kualitas Udara: PPM telah mencapai tingkat yang mengkhawatirkan. Disarankan untuk menghindari kegiatan di luar ruangan dan membatasi aktivitas fisik yang intens. Pastikan untuk menggunakan alat pelindung pernapasan` }
-                        </DialogDescription>
-                        </DialogHeader>
-                    </DialogContent>
-                </Dialog>
-
-                <Tank
-                    max={400}
-                    value={current.sensor_reading_mq135}
-                />
-                <div className='flex justify-center mt-4'>
-                    PPM : {current.ppm} {current.category}
-                </div>
-            </div>
+            <Tank
+                max={600}
+                value={current.sensor_reading_mq135 ?? 0}
+            />
         </WidgedCard>
     )
 }

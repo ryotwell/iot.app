@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+swiper-container {
+  @apply h-full w-full;
+}
+
+swiper-slide {
+  @apply h-full w-full;
+}
+
   @layer base {
     :root {
       --background: 0 0% 100%;

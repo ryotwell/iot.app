@@ -15,6 +15,10 @@ import SuhuRuanganWidged from '@/components/widgeds/SuhuRuangan'
 import StatistikDataMasukWidged from '@/components/widgeds/StatistikDataMasuk'
 import KualitasUdaraTerakhirWidged from '@/components/widgeds/KualitasUdaraTerakhir'
 import StatisticsOfTheLastSevenDaysWidgeds from '@/components/widgeds/StatisticsOfTheLastSevenDaysWidgeds'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { Info } from 'lucide-react'
+import { ThemeToggle } from '@/components/ThemeToggle'
+import ImportantAlerts from '@/components/ImportantAlerts'
 
 const Dashboard = () => {
     const { user } = useAuth({ middleware: 'auth' })
@@ -60,6 +64,18 @@ const Dashboard = () => {
                     <p className='mb-4'>
                         Selamat datang di area Dashboard <a href={ ryotwell.webprofile } className="text-blue-500 font-semibold" target="_blank" rel="noopener noreferrer">{user?.name}</a>
                     </p>
+                    <Alert className="md:w-1/3">
+                        <Info className="h-4 w-4"/>
+                        <AlertTitle>Information!</AlertTitle>
+                        <AlertDescription className="flex items-center justify-between">
+                            <div>
+                                Terlalu terang? anda bisa menggunakan fitur darkmode.
+                            </div>
+                            <div>
+                                <ThemeToggle />
+                            </div>
+                        </AlertDescription>
+                    </Alert>
                 </div>
             </div>
 
@@ -83,6 +99,8 @@ const Dashboard = () => {
             <div className='flex justify-center items-center py-16 text-sm text-slate-950/60 underline'>
                 {`Let's Try`}
             </div>
+
+            <ImportantAlerts {...{ current }} />
 
             {/* <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
