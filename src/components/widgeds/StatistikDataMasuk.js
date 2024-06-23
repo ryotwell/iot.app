@@ -1,12 +1,26 @@
 import React, { useEffect, useState } from 'react'
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend,
+} from 'chart.js'
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui2/select'
 import { Bar } from 'react-chartjs-2'
 import WidgedCard from '../WidgedCard'
 import { Skeleton } from '../ui/skeleton'
 import { socket } from '@/lib/utils'
 
-ChartJS.register( CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 export const options = {
     responsive: true,
@@ -43,16 +57,16 @@ function StatistikDataMasukWidged() {
         socket.emit('incoming_data_statistics', { count_type: count })
     }
 
-    const handleSelect = (value) => {
+    const handleSelect = value => {
         setCount(value)
     }
-    
+
     useEffect(() => {
         getIncomingDataStatistics()
     }, [count])
 
     useEffect(() => {
-        socket.on('incoming_data_statistics', (data) => {
+        socket.on('incoming_data_statistics', data => {
             setIncomingDataStatistics(data)
             setLoading(false)
         })
@@ -64,12 +78,15 @@ function StatistikDataMasukWidged() {
 
     return (
         <WidgedCard
-            title='Statistik Data Masuk'
-            description='Statistik dan jumlah data yang telah masuk ke sistem dalam periode waktu tertentu.'
+            title="Statistik Data Masuk"
+            description="Statistik dan jumlah data yang telah masuk ke sistem dalam periode waktu tertentu."
         >
-            <div className='w-full'>
-                <div className='mb-4'>
-                    <Select onValueChange={handleSelect} className="dark:text-slate-300">
+            <div className="w-full">
+                <div className="mb-4">
+                    <Select
+                        onValueChange={handleSelect}
+                        className="dark:text-slate-300"
+                    >
                         <SelectTrigger className="w-[180px] dark:text-slate-300">
                             <SelectValue placeholder="7 Bulan Terakhir" />
                         </SelectTrigger>
@@ -81,12 +98,12 @@ function StatistikDataMasukWidged() {
                 </div>
                 {loading ? (
                     <div className="w-full space-y-2">
-                        <Skeleton className='h-24' />
-                        <div className='flex space-x-2'>
-                            <Skeleton className='h-6 w-2/6' />
-                            <Skeleton className='h-6 w-2/6' />
-                            <Skeleton className='h-6 w-2/6' />
-                            <Skeleton className='h-6 w-2/6' />
+                        <Skeleton className="h-24" />
+                        <div className="flex space-x-2">
+                            <Skeleton className="h-6 w-2/6" />
+                            <Skeleton className="h-6 w-2/6" />
+                            <Skeleton className="h-6 w-2/6" />
+                            <Skeleton className="h-6 w-2/6" />
                         </div>
                     </div>
                 ) : (

@@ -10,15 +10,15 @@ function SuhuRuanganWidged({ current }) {
         max: 50,
         steps: 3,
         format: '°C',
-        theme: theme
+        theme: theme,
     }
 
     return (
         <WidgedCard
-            title='Suhu Ruangan'
-            description='Menunjukkan suhu ruangan terkini yang diukur oleh sensor.'
+            title="Suhu Ruangan"
+            description="Menunjukkan suhu ruangan terkini yang diukur oleh sensor."
         >
-            <CreateThermometer {...config}/>
+            <CreateThermometer {...config} />
         </WidgedCard>
     )
 }

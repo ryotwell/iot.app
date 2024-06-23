@@ -17,17 +17,19 @@ function Tank({ value, max = 100 }) {
                 textSize={1}
                 textOffsetX={0}
                 textOffsetY={0}
-                textRenderer={(props) => {
+                textRenderer={props => {
                     const value = Math.round(props.value)
                     const radius = Math.min(props.height / 2, props.width / 2)
-                    const textPixels = (props.textSize * radius / 2)
+                    const textPixels = (props.textSize * radius) / 2
                     const valueStyle = {
-                        fontSize: textPixels
+                        fontSize: textPixels,
                     }
 
                     return (
                         <tspan>
-                            <tspan className="value" style={valueStyle}>{value}</tspan>
+                            <tspan className="value" style={valueStyle}>
+                                {value}
+                            </tspan>
                             {/* <tspan style={{
                                 fontSize: textPixels * 0.6
                             }}>
@@ -42,18 +44,18 @@ function Tank({ value, max = 100 }) {
                 waveAmplitude={1}
                 gradient
                 circleStyle={{
-                    fill: fillColor
+                    fill: fillColor,
                 }}
                 waveStyle={{
-                    fill: fillColor
+                    fill: fillColor,
                 }}
                 textStyle={{
                     fill: color('#444').toString(),
-                    fontFamily: 'Arial'
+                    fontFamily: 'Arial',
                 }}
                 waveTextStyle={{
                     fill: color('#fff').toString(),
-                    fontFamily: 'Arial'
+                    fontFamily: 'Arial',
                 }}
             />
         </>

@@ -7,10 +7,7 @@ function GasWidged({ current }) {
             title="Gas"
             description="Lorem ipsum dolor, sit amet consectetur adipisicing elit."
         >
-            <Tank
-                max={600}
-                value={current.sensor_reading_mq135 ?? 0}
-            />
+            <Tank max={600} value={current.sensor_reading_mq135 ?? 0} />
         </WidgedCard>
     )
 }

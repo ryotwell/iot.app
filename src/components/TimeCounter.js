@@ -1,5 +1,5 @@
-import { formatTime } from "@/lib/utils"
-import { useEffect, useState } from "react"
+import { formatTime } from '@/lib/utils'
+import { useEffect, useState } from 'react'
 
 function TimeCounter({ createdAt }) {
     const [elapsedTime, setElapsedTime] = useState(0)
@@ -12,9 +12,11 @@ function TimeCounter({ createdAt }) {
         }
 
         const interval = setInterval(() => {
-        const currentTime = new Date()
-        const createdAtTime = new Date(createdAt)
-        const differenceInSeconds = Math.floor((currentTime - createdAtTime) / 1000)
+            const currentTime = new Date()
+            const createdAtTime = new Date(createdAt)
+            const differenceInSeconds = Math.floor(
+                (currentTime - createdAtTime) / 1000,
+            )
             setElapsedTime(differenceInSeconds)
         }, 1000) // Update setiap detik
 

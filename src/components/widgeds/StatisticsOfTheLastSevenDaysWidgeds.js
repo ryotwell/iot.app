@@ -4,7 +4,7 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-  } from '@/components/ui/select'
+} from '@/components/ui2/select'
 
 import {
     Chart as ChartJS,
@@ -29,9 +29,9 @@ ChartJS.register(
     LineElement,
     Title,
     Tooltip,
-    Legend
+    Legend,
 )
-  
+
 export const options = {
     responsive: true,
     plugins: {
@@ -44,31 +44,39 @@ export const options = {
         },
     },
 }
-  
+
 function StatisticsOfTheLastSevenDaysWidgeds() {
-    const [data, setData] = useState({ labels: [], data: { average_humidity: [], average_temperature: [], average_sensor_reading_mq135: [], average_ppm: [] } })
+    const [data, setData] = useState({
+        labels: [],
+        data: {
+            average_humidity: [],
+            average_temperature: [],
+            average_sensor_reading_mq135: [],
+            average_ppm: [],
+        },
+    })
     const [count, setCount] = useState('days-7')
     const [loading, setLoading] = useState(true)
 
-    const getWidgetTitle = (label) => {
-        if ( count === 'hours-12' ) {
+    const getWidgetTitle = label => {
+        if (count === 'hours-12') {
             return `${label} 12 jam terakhir`
         }
 
-        if ( count === 'hours-24' ) {
+        if (count === 'hours-24') {
             return `${label} 24 jam terakhir`
         }
 
-        if ( count === 'days-7' ) {
+        if (count === 'days-7') {
             return `${label} 7 hari terakhir`
         }
 
-        if ( count === 'days-12' ) {
+        if (count === 'days-12') {
             return `${label} 12 hari terakhir`
         }
     }
-    
-    const handleSelect = (value) => {
+
+    const handleSelect = value => {
         setCount(value)
     }
 
@@ -130,30 +138,40 @@ function StatisticsOfTheLastSevenDaysWidgeds() {
     }, [count])
 
     useEffect(() => {
-        socket.on('statistics_of_the_last', (data) => {
+        socket.on('statistics_of_the_last', data => {
             setData(data)
             setLoading(false)
         })
 
-        return () => [
-            socket.off('statistics_of_the_last'),
-        ]
+        return () => [socket.off('statistics_of_the_last')]
     }, [])
 
     return (
         <>
             <swiper-container>
                 <swiper-slide>
-                    <WidgedCard title={getWidgetTitle('Suhu')} description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, velit.">
+                    <WidgedCard
+                        title={getWidgetTitle('Suhu')}
+                        description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, velit."
+                    >
                         <Wrapper {...{ count, loading, handleSelect }}>
-                            <Line options={options} data={ReactChartTemperatureData} />
+                            <Line
+                                options={options}
+                                data={ReactChartTemperatureData}
+                            />
                         </Wrapper>
                     </WidgedCard>
                 </swiper-slide>
                 <swiper-slide>
-                    <WidgedCard title={getWidgetTitle('Gas')} description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, velit.">
+                    <WidgedCard
+                        title={getWidgetTitle('Gas')}
+                        description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, velit."
+                    >
                         <Wrapper {...{ count, loading, handleSelect }}>
-                            <Line options={options} data={ReactChartReadingMQ135Data} />
+                            <Line
+                                options={options}
+                                data={ReactChartReadingMQ135Data}
+                            />
                         </Wrapper>
                     </WidgedCard>
                 </swiper-slide>
@@ -161,14 +179,23 @@ function StatisticsOfTheLastSevenDaysWidgeds() {
 
             <swiper-container>
                 <swiper-slide>
-                    <WidgedCard title={getWidgetTitle('Kelembapan')} description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, velit.">
+                    <WidgedCard
+                        title={getWidgetTitle('Kelembapan')}
+                        description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, velit."
+                    >
                         <Wrapper {...{ count, loading, handleSelect }}>
-                            <Line options={options} data={ReactChartHumidityData} />
+                            <Line
+                                options={options}
+                                data={ReactChartHumidityData}
+                            />
                         </Wrapper>
                     </WidgedCard>
                 </swiper-slide>
                 <swiper-slide>
-                    <WidgedCard title={getWidgetTitle('PPM')} description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, velit.">
+                    <WidgedCard
+                        title={getWidgetTitle('PPM')}
+                        description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, velit."
+                    >
                         <Wrapper {...{ count, loading, handleSelect }}>
                             <Line options={options} data={ReactChartPPMData} />
                         </Wrapper>
@@ -181,9 +208,13 @@ function StatisticsOfTheLastSevenDaysWidgeds() {
 
 const Wrapper = ({ children, count, loading, handleSelect }) => {
     return (
-        <div className='w-full'>
-            <div className='flex justify-start mb-4'>
-                <SelectComponent count={count} handleSelect={handleSelect} loading={loading} />
+        <div className="w-full">
+            <div className="flex justify-start mb-4">
+                <SelectComponent
+                    count={count}
+                    handleSelect={handleSelect}
+                    loading={loading}
+                />
             </div>
             {children}
         </div>
