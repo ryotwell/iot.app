@@ -14,7 +14,7 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from '@/components/ui2/select'
+} from '@/components/ui/select'
 import { Bar } from 'react-chartjs-2'
 import WidgedCard from '../WidgedCard'
 import { Skeleton } from '../ui/skeleton'

@@ -4,7 +4,7 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from '@/components/ui2/select'
+} from '@/components/ui/select'
 
 import {
     Chart as ChartJS,
