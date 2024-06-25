@@ -5,62 +5,15 @@ import Team from '@/components/Team'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { useAuth } from '@/hooks/auth'
 import Link from 'next/link'
-import { useState } from 'react'
 import { Github } from 'lucide-react'
 
 function Home() {
     const { user } = useAuth({})
-    const [isNavigation, setIsNavigation] = useState(false)
-
-    const handleNavigationToggle = () => {
-        setIsNavigation(!isNavigation)
-    }
 
     return (
         <>
-            <div
-                className={`${isNavigation ? 'flex' : 'hidden'} w-full h-screen absolute justify-center backdrop-blur-md z-10`}
-            >
-                <div
-                    className="w-full bg-white h-52 my-10 mx-4 p-4 rounded-xl"
-                    style={{ marginTop: '45%' }}
-                >
-                    <div className="flex justify-end mb-4">
-                        <button
-                            onClick={handleNavigationToggle}
-                            className="hover:bg-gray-100 p-2 transition duration-300 rounded-xl"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth={1.5}
-                                stroke="currentColor"
-                                className="w-6 h-6 text-slate-950/60"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M6 18 18 6M6 6l12 12"
-                                />
-                            </svg>
-                        </button>
-                    </div>
-                    <div>
-                        <ul className="space-y-2">
-                            <li className="bg-gray-100 hover:bg-blue-500 duration-300 hover:text-slate-100 rounded-xl p-4 text-sm text-slate-950/60">
-                                Home
-                            </li>
-                            <li className="bg-gray-100 hover:bg-blue-500 duration-300 hover:text-slate-100 rounded-xl p-4 text-sm text-slate-950/60">
-                                Login
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div className={isNavigation ? 'fixed' : 'block'}>
-                <div className="flex justify-between items-center p-8">
+            <div>
+                <div className="flex justify-between items-center p-8 lg:px-32">
                     <div className="uppercase font-bold flex justify-center items-center">
                         <ApplicationLogo className="block h-9 w-auto fill-current dark:text-slate-300 text-gray-800 mr-2" />
                         Lets Try
@@ -71,7 +24,7 @@ function Home() {
                     <ul className="hidden lg:flex space-x-2 items-center">
                         <li>
                             <Link
-                                className="text-slate-900/60 dark:text-slate-300 hover:bg-blue-500 hover:text-slate-100 duration-300 px-4 py-2 rounded-lg text-sm"
+                                className="text-slate-900/60 dark:text-slate-300 hover:bg-slate-950 dark:hover:bg-slate-700 hover:text-slate-100 duration-300 px-4 py-2 rounded-md text-sm"
                                 href="/"
                             >
                                 Home
@@ -80,14 +33,14 @@ function Home() {
                         <li>
                             {user?.email ? (
                                 <Link
-                                    className="text-slate-900/60 dark:text-slate-300 hover:bg-blue-500 hover:text-slate-100 duration-300 px-4 py-2 rounded-lg text-sm"
+                                    className="text-slate-900/60 dark:text-slate-300 hover:bg-slate-950 dark:hover:bg-slate-700 hover:text-slate-100 duration-300 px-4 py-2 rounded-md text-sm"
                                     href="/dashboard"
                                 >
                                     Dashboard
                                 </Link>
                             ) : (
                                 <Link
-                                    className="text-slate-900/60 dark:text-slate-300 hover:bg-blue-500 hover:text-slate-100 duration-300 px-4 py-2 rounded-lg text-sm"
+                                    className="text-slate-900/60 dark:text-slate-300 hover:bg-slate-950 dark:hover:bg-slate-700 hover:text-slate-100 duration-300 px-4 py-2 rounded-md text-sm"
                                     href="/login"
                                 >
                                     Login
@@ -103,7 +56,7 @@ function Home() {
                     <div className="w-full lg:w-1/2 flex justify-center items-center">
                         <div>
                             <div>
-                                <h1 className="text-2xl lg:text-4xl font-bold tracking-tight dark:text-slate-300 text-gray-900 uppercase mr-2">
+                                <h1 className="text-2xl lg:text-4xl font-bold tracking-tight dark:text-slate-300 text-gray-900 uppercase mr-2 max-w-xl">
                                     Monitoring Suhu Kelembapan dan Gas untuk
                                     Optimasi
                                 </h1>

@@ -19,6 +19,7 @@ import { Bar } from 'react-chartjs-2'
 import WidgedCard from '../WidgedCard'
 import { Skeleton } from '../ui/skeleton'
 import { socket } from '@/lib/utils'
+import { LoaderCircle } from 'lucide-react'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
@@ -82,10 +83,11 @@ function StatistikDataMasukWidged() {
             description="Statistik dan jumlah data yang telah masuk ke sistem dalam periode waktu tertentu."
         >
             <div className="w-full">
-                <div className="mb-4">
+                <div className="mb-4 flex items-center">
                     <Select
                         onValueChange={handleSelect}
                         className="dark:text-slate-300"
+                        disabled={loading}
                     >
                         <SelectTrigger className="w-[180px] dark:text-slate-300">
                             <SelectValue placeholder="7 Bulan Terakhir" />
@@ -95,6 +97,9 @@ function StatistikDataMasukWidged() {
                             <SelectItem value="2">12 Bulan Terakhir</SelectItem>
                         </SelectContent>
                     </Select>
+                    {loading && (
+                        <LoaderCircle className="ml-4 animate-spin text-slate-950 dark:text-slate-700" />
+                    )}
                 </div>
                 {loading ? (
                     <div className="w-full space-y-2">

@@ -1,3 +1,9 @@
+import { getAirQualityClassNames, socket } from '@/lib/utils'
+import { useEffect, useState } from 'react'
+import clsx from 'clsx'
+
+import WidgedCard from '../../WidgedCard'
+import { Badge } from '@/components/ui/badge'
 import {
     Table,
     TableBody,
@@ -7,11 +13,7 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table'
-import { Badge } from '@/components/ui/badge'
-import { getAirQualityClassNames, socket } from '@/lib/utils'
-import { useEffect, useState } from 'react'
-import WidgedCard from '../WidgedCard'
-import { Button } from '../ui/button'
+import SheetExport from './SheetExport'
 
 function KualitasUdaraTerakhirWidged() {
     const [data, setData] = useState([])
@@ -19,16 +21,16 @@ function KualitasUdaraTerakhirWidged() {
 
     const getData = () => {
         setLoading(true)
-        socket.emit('data_for_the_last_7_days')
+        socket.emit('data_for_the_last')
     }
 
     useEffect(() => {
-        socket.on('data_for_the_last_7_days', data => {
+        socket.on('data_for_the_last', data => {
             setData(data)
             setLoading(false)
         })
 
-        return () => [socket.off('data_for_the_last_7_days')]
+        return () => [socket.off('data_for_the_last')]
     }, [])
 
     useEffect(() => {
@@ -43,14 +45,16 @@ function KualitasUdaraTerakhirWidged() {
             right
         >
             <div className="w-full">
-                <div className="mb-6">
-                    <Button>Export data 7 hari terakhir</Button>
+                <div className="mb-6 flex">
+                    <SheetExport />
                 </div>
                 <Table>
                     <TableCaption>Data 7 Hari Terakhir.</TableCaption>
                     <TableHeader>
                         <TableRow>
-                            <TableHead className="w-full">Tanggal</TableHead>
+                            <TableHead className="w-full">
+                                Hari/Tanggal
+                            </TableHead>
                             <TableHead>Gas</TableHead>
                             <TableHead>PPM</TableHead>
                             <TableHead>Suhu</TableHead>
@@ -80,7 +84,12 @@ function KualitasUdaraTerakhirWidged() {
                                     <TableCell>
                                         {x.category !== 'Data tidak cukup' ? (
                                             <Badge
-                                                className={`text-white uppercase ${getAirQualityClassNames(x.category)}`}
+                                                className={clsx(
+                                                    'text-white uppercase',
+                                                    getAirQualityClassNames(
+                                                        x.category,
+                                                    ),
+                                                )}
                                             >
                                                 {x.category}
                                             </Badge>

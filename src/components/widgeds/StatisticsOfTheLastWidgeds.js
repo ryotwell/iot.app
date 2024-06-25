@@ -21,6 +21,7 @@ import { Line } from 'react-chartjs-2'
 import WidgedCard from '../WidgedCard'
 import { useEffect, useState } from 'react'
 import { socket } from '@/lib/utils'
+import { LoaderCircle } from 'lucide-react'
 
 ChartJS.register(
     CategoryScale,
@@ -45,7 +46,7 @@ export const options = {
     },
 }
 
-function StatisticsOfTheLastSevenDaysWidgeds() {
+function StatisticsOfTheLastWidgeds() {
     const [data, setData] = useState({
         labels: [],
         data: {
@@ -223,18 +224,27 @@ const Wrapper = ({ children, count, loading, handleSelect }) => {
 
 const SelectComponent = ({ count, loading, handleSelect }) => {
     return (
-        <Select value={count} onValueChange={handleSelect} disabled={loading}>
-            <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="--- [ PILIH ] ---" />
-            </SelectTrigger>
-            <SelectContent>
-                <SelectItem value="hours-12">12 Jam Terakhir</SelectItem>
-                <SelectItem value="hours-24">24 Jam Terakhir</SelectItem>
-                <SelectItem value="days-7">7 Hari Terakhir</SelectItem>
-                <SelectItem value="days-12">12 Hari Terakhir</SelectItem>
-            </SelectContent>
-        </Select>
+        <div className="flex items-center">
+            <Select
+                value={count}
+                onValueChange={handleSelect}
+                disabled={loading}
+            >
+                <SelectTrigger className="w-[180px]">
+                    <SelectValue placeholder="--- [ PILIH ] ---" />
+                </SelectTrigger>
+                <SelectContent>
+                    <SelectItem value="hours-12">12 Jam Terakhir</SelectItem>
+                    <SelectItem value="hours-24">24 Jam Terakhir</SelectItem>
+                    <SelectItem value="days-7">7 Hari Terakhir</SelectItem>
+                    <SelectItem value="days-12">12 Hari Terakhir</SelectItem>
+                </SelectContent>
+            </Select>
+            {loading && (
+                <LoaderCircle className="ml-4 animate-spin text-slate-950 dark:text-slate-700" />
+            )}
+        </div>
     )
 }
 
-export default StatisticsOfTheLastSevenDaysWidgeds
+export default StatisticsOfTheLastWidgeds
