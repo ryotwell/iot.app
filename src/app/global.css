@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap');
+
+.onest {
+    font-family: 'Onest', sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.onest-font-bold {
+    font-weight: 600;
+}
+
+.hero-section-title {
+    @apply onest onest-font-bold text-4xl lg:text-6xl;
+}
+
+.section-title {
+    @apply onest onest-font-bold text-3xl lg:text-4xl;
+}
+
+.content {
+    @apply px-6 py-6 lg:px-72;
+}
+
 swiper-container {
     @apply h-full w-full;
 }

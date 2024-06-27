@@ -13,7 +13,7 @@ const fontSans = FontSans({
 })
 
 export const metadata = {
-    title: 'Sistem Monitoring Suhu Kelembapan dan Gas untuk Optimasi',
+    title: 'Sistem Monitoring Suhu Kelembapan dan Gas untuk Optimasi Lingkungan',
 }
 
 const RootLayout = ({ children }) => {

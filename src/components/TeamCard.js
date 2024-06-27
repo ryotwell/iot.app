@@ -11,7 +11,7 @@ const Team = ({ name, photo = null, nim = null }) => {
             />
             <div className="space-y-2 mt-4">
                 <div className="text-sm font-medium lg:text-sm text-center">
-                    <h3 className="text-purple-700 dark:text-purple-500">
+                    <h3 className="text-slate-950/50 dark:text-slate-100/50">
                         {name}
                     </h3>
                     {nim && (
