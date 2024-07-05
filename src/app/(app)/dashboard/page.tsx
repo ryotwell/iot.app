@@ -2,7 +2,7 @@
 
 import { toast } from 'sonner'
 import { useAuth } from '@/hooks/auth'
-import { useEffect, useState } from 'react'
+import { EffectCallback, useEffect, useState } from 'react'
 import { getCurrentTime, socket } from '@/lib/utils'
 
 import Header from '@/app/(app)/Header'
@@ -21,21 +21,33 @@ import {
     ThemeTips,
     UserTips,
 } from '@/components/Dashboard/Tips'
-
 import ImportantAlerts from '@/components/ImportantAlerts'
+
+export interface CurrentData {
+    id: number;
+    temperature: number;
+    humidity: number;
+    sensor_reading_mq135: number;
+    ppm: number;
+    category: string;
+    diff_for_humans: string;
+    created_at_format: string;
+    created_at: Date;
+    updated_at: Date;
+}
 
 const Dashboard = () => {
     const { user } = useAuth({ middleware: 'auth' })
 
-    const [current, setCurrent] = useState({})
-    const [currentLoading, setCurrentLoading] = useState(true)
+    const [current, setCurrent] = useState<CurrentData>({} as CurrentData)
+    const [currentLoading, setCurrentLoading] = useState<boolean>(true)
 
     const getCurrent = () => {
         setCurrentLoading(true)
         socket.emit('current')
     }
 
-    useEffect(() => {
+    useEffect((): () => void => {
         socket.on('send_notif', () => {
             if (user.setting.dht_11_real_time_notification) {
                 toast.success('DHT 11 baru saja mengirimkan data baru', {
@@ -49,7 +61,10 @@ const Dashboard = () => {
             setCurrentLoading(false)
         })
 
-        return () => [socket.off('send_notif'), socket.off('current')]
+        return (): void => {
+            socket.off('send_notif'),
+            socket.off('current')
+        }
     }, [])
 
     useEffect(() => {
