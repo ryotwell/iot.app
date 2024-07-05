@@ -7,7 +7,7 @@ export function cn(...inputs) {
     return twMerge(clsx(inputs))
 }
 
-export function getFormattedTimeForError() {
+export function getCurrentTime() {
     const timezone = 'Asia/Makassar'
     const currentTime = moment.tz(timezone)
 

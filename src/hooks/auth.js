@@ -3,7 +3,7 @@ import axios from '@/lib/axios'
 import { useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { toast } from 'sonner'
-import { getFormattedTimeForError } from '@/lib/utils'
+import { getCurrentTime } from '@/lib/utils'
 import { Loading } from 'notiflix/build/notiflix-loading-aio'
 
 export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
@@ -56,7 +56,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
                 mutate()
                 Loading.remove()
                 toast.success('Login successfully, You will be redirect...', {
-                    description: getFormattedTimeForError(),
+                    description: getCurrentTime(),
                     action: {
                         label: 'Close',
                         onClick: () => console.log('Closed'),
@@ -69,7 +69,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
                 const message = Object.values(error.response.data.errors)[0]
 
                 toast.error(message, {
-                    description: getFormattedTimeForError(),
+                    description: getCurrentTime(),
                     action: {
                         label: 'Close',
                         onClick: () => console.log('Closed'),
@@ -130,7 +130,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
                 mutate()
                 toast('Logout successfully, You will be redirect...', {
                     className: 'text-green-500',
-                    description: getFormattedTimeForError(),
+                    description: getCurrentTime(),
                     action: {
                         label: 'Close',
                         onClick: () => console.log('Closed'),
