@@ -1,34 +1,16 @@
-import { ryotwell } from '@/lib/utils'
 import TeamCard from './TeamCard'
+import { teams } from '@/lib/team'
 
 function Team() {
     return (
         <ul className="grid grid-cols-2 lg:grid-cols-4 gap-4 w-full">
-            <li>
-                <TeamCard
-                    name="M. Taufik Hidayat"
-                    photo="/team/noprofile.jpg"
-                    nim="220602017"
-                />
-            </li>
-            <li>
-                <TeamCard
-                    name="Dwi Hartilawati"
-                    photo="/team/noprofile.jpg"
-                    nim="220602007"
-                />
-            </li>
-            <li>
-                <TeamCard
-                    name="Zulzario Zaeri"
-                    photo="/team/noprofile.jpg"
-                    nim="220602030"
-                    url={ryotwell.webprofile}
-                />
-            </li>
-            <li>
-                <TeamCard name="ChatGPT" photo="/team/chatgpt.jpg" />
-            </li>
+            {teams.map(({ ...props }, key) => {
+                return (
+                    <li key={key}>
+                        <TeamCard {...props} />
+                    </li>
+                )
+            })}
         </ul>
     )
 }

@@ -44,7 +44,7 @@ function WhatsappWidged() {
         >
             {!status ? (
                 qrcode ? (
-                    <img src={qrcode} style={{ height: '300px' }} />
+                    <img src={qrcode} className="h-full" />
                 ) : (
                     <StatusComponent value="connecting" />
                 )

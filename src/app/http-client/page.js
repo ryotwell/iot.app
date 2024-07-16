@@ -133,7 +133,9 @@ function HttpClient() {
                             />
                         </div>
                         <div className="flex justify-end space-x-4">
-                            <Button onClick={handleGenerate}>Generate</Button>
+                            <Button type="button" onClick={handleGenerate}>
+                                Generate
+                            </Button>
                             <Button onClick={handleSubmit}>Kirim</Button>
                         </div>
                     </form>

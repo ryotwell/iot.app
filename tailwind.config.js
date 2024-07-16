@@ -86,6 +86,28 @@ module.exports = {
                     to: { height: '0' },
                 },
 
+                // aurora-background
+                aurora: {
+                    from: {
+                        backgroundPosition: '50% 50%, 50% 50%',
+                    },
+                    to: {
+                        backgroundPosition: '350% 50%, 350% 50%',
+                    },
+                },
+
+                // animated-shiny-text
+                shimmer: {
+                    '0%, 90%, 100%': {
+                        'background-position':
+                            'calc(-100% - var(--shimmer-width)) 0',
+                    },
+                    '30%, 60%': {
+                        'background-position':
+                            'calc(100% + var(--shimmer-width)) 0',
+                    },
+                },
+
                 // shimmer button
                 'spin-around': {
                     '0%': {
@@ -134,6 +156,12 @@ module.exports = {
             animation: {
                 'accordion-down': 'accordion-down 0.2s ease-out',
                 'accordion-up': 'accordion-up 0.2s ease-out',
+
+                // aurora-background
+                aurora: 'aurora 60s linear infinite',
+
+                // animated-shiny-text
+                shimmer: 'shimmer 8s infinite',
 
                 // shimmer button
                 'spin-around':

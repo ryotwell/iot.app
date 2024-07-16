@@ -1,35 +1,55 @@
+'use client'
+
 import { ThemeToggle } from '@/components/ThemeToggle'
 import GridPattern from '@/components/magicui/grid-pattern'
 import ShimmerButton from '@/components/magicui/shimmer-button'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
-import { RocketIcon, MoveDown, Github } from 'lucide-react'
+import { RocketIcon, MoveDown, Github, ArrowRightIcon } from 'lucide-react'
 import Team from '@/components/Team'
 import ApplicationLogo from '@/components/ApplicationLogo'
 import clsx from 'clsx'
 import Spotlight from '@/components/magicui/Spotlight'
 import { TypewriterEffectSmooth } from '@/components/magicui/typewriter-effect'
 import { FlipWords } from '@/components/magicui/flip-words'
+import AnimatedShinyText from '@/components/magicui/animated-shiny-text'
+
+export function AnimatedShinyTextComponent() {
+    return (
+        <div className="z-10 min-h-[4rem] flex items-center justify-center">
+            <a
+                className={cn(
+                    'group rounded-full border border-black/5 bg-neutral-100 text-base text-white transition-all ease-in hover:cursor-pointer hover:bg-neutral-200 dark:border-white/5 dark:bg-neutral-900 dark:hover:bg-neutral-800',
+                )}
+                href="https://ryotwell.vercel.app/projects/sistem-monitoring-suhu-kelembapan-dan-gas-optimalisasi-lingkungan"
+                rel="noopener noreferrer"
+                target="_blank"
+            >
+                <AnimatedShinyText
+                    className={clsx([
+                        'inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400',
+                        'text-sm lg:text-base',
+                    ])}
+                >
+                    <span>✨ Introducing Optima</span>
+                    <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
+                </AnimatedShinyText>
+            </a>
+        </div>
+    )
+}
 
 const HeaderComponent = () => {
     return (
         <div className="flex justify-between content">
             <Link href="#!" className="inline-flex items-center">
                 <ApplicationLogo className="block h-9 w-auto fill-current dark:text-slate-100/50 text-slate-800 mr-2" />
-                <h1 className="ml-2">Letstry</h1>
+                <h1 className="ml-2 font-medium uppercase">Optima</h1>
             </Link>
             <ThemeToggle />
         </div>
     )
 }
-
-// const ButtonComponent = () => {
-//     return (
-//         <Link href="#!" className="bg-gradient-to-r from-purple-400 via-orange-400 to-pink-300 flex justify-center w-full lg:w-1/5 py-3 rounded-md text-white hover:scale-105 duration-300">
-//             Login
-//         </Link>
-//     )
-// }
 
 const FooterComponent = () => {
     return (
@@ -50,22 +70,16 @@ const FooterComponent = () => {
 const HeroComponent = () => {
     const words = [
         {
-            text: 'chat',
+            text: 'Terintegrasi',
         },
         {
-            text: 'code',
+            text: 'dengan',
         },
         {
-            text: 'cloud',
+            text: 'whatsapp',
         },
         {
-            text: 'deployments',
-        },
-        {
-            text: 'and',
-        },
-        {
-            text: 'more',
+            text: 'Monitoring',
         },
     ]
 
@@ -74,23 +88,26 @@ const HeroComponent = () => {
             <div className="relative flex h-3/6 lg:h-full w-full items-center justify-center bg-background">
                 <div className="z-10 w-full space-y-6">
                     <div className="flex justify-center">
-                        <h1 className="text-center lg:max-w-4xl hero-section-title">
-                            Monitoring
-                            <br />
-                            <FlipWords
-                                words={['Suhu,', 'Kelembapan,', 'Gas,']}
-                            />
-                            <br />
-                            <span
-                                className={clsx([
-                                    'bg-gradient-to-r from-purple-500 via-orange-400 to-green-300',
-                                    'inline-block text-transparent bg-clip-text',
-                                    'md:pb-2',
-                                ])}
-                            >
-                                Optimasi Lingkungan
-                            </span>
-                        </h1>
+                        <div>
+                            <AnimatedShinyTextComponent />
+                            <h1 className="text-center lg:max-w-4xl hero-section-title">
+                                Monitoring
+                                <br />
+                                <FlipWords
+                                    words={['Suhu,', 'Kelembapan,', 'Gas,']}
+                                />
+                                <br />
+                                <span
+                                    className={clsx([
+                                        'bg-gradient-to-r from-purple-500 via-orange-400 to-green-300',
+                                        'inline-block text-transparent bg-clip-text',
+                                        'md:pb-2',
+                                    ])}
+                                >
+                                    Optimasi Lingkungan
+                                </span>
+                            </h1>
+                        </div>
                     </div>
                     <div className="flex justify-center items-center">
                         <TypewriterEffectSmooth
@@ -126,7 +143,7 @@ const HeroComponent = () => {
 
 const MoveDownComponent = () => {
     return (
-        <div className="absolute w-full top-full md:hidden">
+        <div className="absolute w-full md:hidden bottom-10">
             <div className="flex justify-center mb-4 text-slate-950/50 dark:text-slate-100/50 text-sm">
                 Project Kelompok 2.
             </div>
@@ -141,21 +158,13 @@ const MoveDownComponent = () => {
 }
 
 function Home() {
-    // return (
-    //     <div className='relative'>
-    //         <div>
-    //             Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, corrupti.
-    //         </div>
-    //         <div className='absolute h-full w-full top-0'>
-    //             <GlowingStarsBackgroundCard/>
-    //         </div>
-    //     </div>
-    // )
-
     return (
         <>
             <Spotlight
-                className="-top-40 left-0 md:left-60 md:-top-20"
+                className={clsx([
+                    '-top-40 left-0 md:left-60 md:-top-20',
+                    'dark:block hidden',
+                ])}
                 fill="white"
             />
 
