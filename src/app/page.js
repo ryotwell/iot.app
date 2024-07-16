@@ -78,9 +78,6 @@ const HeroComponent = () => {
         {
             text: 'whatsapp',
         },
-        {
-            text: 'Monitoring',
-        },
     ]
 
     return (

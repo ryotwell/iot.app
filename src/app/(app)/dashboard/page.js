@@ -5,7 +5,6 @@ import { useAuth } from '@/hooks/auth'
 import { useEffect, useState } from 'react'
 import { getCurrentTime, socket } from '@/lib/utils'
 
-import Header from '@/app/(app)/Header'
 import GasWidged from '@/components/widgeds/Gas'
 import TeamWidged from '@/components/widgeds/Team'
 import LastDataWidged from '@/components/widgeds/LastData'
@@ -16,13 +15,14 @@ import SuhuRuanganWidged from '@/components/widgeds/SuhuRuangan'
 import StatistikDataMasukWidged from '@/components/widgeds/StatistikDataMasuk'
 import KualitasUdaraTerakhirWidged from '@/components/widgeds/LastAirQuality/KualitasUdaraTerakhir'
 import StatisticsOfTheLastWidgeds from '@/components/widgeds/StatisticsOfTheLastWidgeds'
+
+import Header from '@/app/(app)/Header'
+import ImportantAlerts from '@/components/ImportantAlerts'
 import {
     HttpClientnOnlineTips,
     ThemeTips,
     UserTips,
 } from '@/components/Dashboard/Tips'
-
-import ImportantAlerts from '@/components/ImportantAlerts'
 
 const Dashboard = () => {
     const { user } = useAuth({ middleware: 'auth' })
