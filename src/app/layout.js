@@ -1,8 +1,8 @@
 import '@/app/global.css'
-import { Inter as FontSans } from 'next/font/google'
-import { cn } from '@/lib/utils'
 import { ThemeProvider } from '@/components/theme-provider.js'
 import { Toaster } from '@/components/ui/sonner'
+import { cn } from '@/lib/utils'
+import { Inter as FontSans } from 'next/font/google'
 import { register } from 'swiper/element/bundle'
 
 register()
